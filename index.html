@@ -1,78 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Tabla Periódica AR NFT</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla Periódica AR - NFT Markers</title>
+
+  <!-- A-Frame y AR.js -->
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
+
   <style>
-    body { margin: 0; overflow: hidden; font-family: sans-serif; }
-    .loading {
+    body { margin: 0; overflow: hidden; }
+    #loading {
       position: fixed;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      padding: 15px;
-      background: rgba(255,255,255,0.9);
-      border-radius: 8px;
-      font-size: 18px;
+      background: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 1.2em;
+      color: black;
     }
   </style>
 </head>
 <body>
-  <div class="loading" id="loading">🔍 Cargando AR...</div>
+  <div id="loading">🔍 Cargando AR... apunta la cámara al marcador</div>
 
-  <a-scene
+  <a-scene 
+    embedded 
     vr-mode-ui="enabled: false"
-    embedded
     arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
     
-    <!-- ======================================== -->
-    <!-- 🔹 BLOQUE 1: Hidrógeno y Helio -->
-    <!-- ======================================== -->
-    <a-nft type="nft" url="markers/hidrogeno">
-      <a-plane src="images/hidrogeno.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
-    </a-nft>
-
-    <a-nft type="nft" url="markers/helio">
-      <a-plane src="images/helio.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
-    </a-nft>
-
-
-    <!-- ======================================== -->
-    <!-- 🔹 BLOQUE 2: Alcalinos y Alcalinotérreos -->
-    <!-- ======================================== -->
-    <a-nft type="nft" url="markers/li">
-      <a-plane src="images/li.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
-    </a-nft>
-    <a-nft type="nft" url="markers/na">
-      <a-plane src="images/na.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
-    </a-nft>
-    <a-nft type="nft" url="markers/k">
-      <a-plane src="images/k.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
-    </a-nft>
-    <!-- ...sigue con Rb, Cs, Fr -->
-    <!-- ...y luego Be, Mg, Ca, Sr, Ba, Ra -->
-
-
-    <!-- ======================================== -->
-    <!-- 🔹 BLOQUE 3: Otros grupos (ejemplo Halógenos y Gases Nobles) -->
-    <!-- ======================================== -->
-    <!-- Aquí irán F, Cl, Br, I, At, Ts + Ne, Ar, Kr, Xe, Rn, Og -->
-
-
-    <!-- ======================================== -->
-    <!-- 🔹 BLOQUE N: (vas agregando más grupos poco a poco) -->
-    <!-- ======================================== -->
-
     <!-- Cámara -->
     <a-entity camera></a-entity>
+
+    <!-- ======================================== -->
+    <!-- 🔹 BLOQUE 0: Elementos 1–9 -->
+    <!-- ======================================== -->
+    <a-nft type="nft" url="markers/bloque0/h">
+      <a-plane src="images/bloque0/h.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    </a-nft>
+
+    <a-nft type="nft" url="markers/bloque0/he">
+      <a-plane src="images/bloque0/he.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    </a-nft>
+
+    <a-nft type="nft" url="markers/bloque0/li">
+      <a-plane src="images/bloque0/li.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    </a-nft>
+
+    <!-- ...continúas con Be, B, C, N, O, F -->
+
+    <!-- ======================================== -->
+    <!-- 🔹 BLOQUE 1: Elementos 10–19 -->
+    <!-- ======================================== -->
+    <a-nft type="nft" url="markers/bloque1/ne">
+      <a-plane src="images/bloque1/ne.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    </a-nft>
+
+    <a-nft type="nft" url="markers/bloque1/na">
+      <a-plane src="images/bloque1/na.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    </a-nft>
+
+    <a-nft type="nft" url="markers/bloque1/mg">
+      <a-plane src="images/bloque1/mg.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    </a-nft>
+
+    <!-- ...sigues hasta K -->
+
+    <!-- ======================================== -->
+    <!-- 🔹 BLOQUE 2: Elementos 20–29 -->
+    <!-- ======================================== -->
+    <!-- Ejemplo -->
+    <a-nft type="nft" url="markers/bloque2/ca">
+      <a-plane src="images/bloque2/ca.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    </a-nft>
+
+    <!-- ...continúa con Sc, Ti, V, Cr, Mn, Fe, Co, Ni, Cu -->
+
+    <!-- ======================================== -->
+    <!-- Continúa con bloques 3–11 -->
+    <!-- ======================================== -->
+
   </a-scene>
 
   <script>
+    // Ocultar mensaje de carga cuando la escena esté lista
     const loading = document.getElementById('loading');
-    window.addEventListener('load', () => {
-      loading.innerText = "📸 Apunta tu cámara a los marcadores";
-      setTimeout(() => { loading.style.display = "none"; }, 4000);
+    document.querySelector('a-scene').addEventListener('loaded', () => {
+      loading.style.display = 'none';
     });
   </script>
 </body>
