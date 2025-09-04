@@ -22,6 +22,7 @@
       font-family: Arial, sans-serif;
       font-size: 1.2em;
       color: black;
+	z-index: 999;
     }
   </style>
 </head>
@@ -31,14 +32,28 @@
   <a-scene 
     embedded 
     vr-mode-ui="enabled: false"
+	renderer="logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
     
     <!-- Cámara -->
     <a-entity camera></a-entity>
 
     <!-- 1 - Hidrógeno -->
-    <a-nft type="nft" url="markers/bloque0/h">
-      <a-plane src="images/bloque0/h.jpg" height="1" width="1" rotation="-90 0 0"></a-plane>
+    <a-nft
+      type="nft"
+      url="markers/bloque0/h"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance="0.01"
+      smoothThreshold="5">
+
+      <a-image
+        src="images/bloque0/h.jpg"
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="1"
+        height="1">
+      </a-image>
     </a-nft>
 
   </a-scene>
