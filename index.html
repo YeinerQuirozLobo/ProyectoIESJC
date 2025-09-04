@@ -2,37 +2,31 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Prueba AR.js - Pinball</title>
+    <title>Prueba NFT - Pinball</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar-nft.js"></script>
-    <style>
-      body, html { margin: 0; padding: 0; overflow: hidden; }
-    </style>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar-nft.js"></script>
   </head>
-  <body>
+  <body style="margin: 0; overflow: hidden;">
     <a-scene
-      embedded
       vr-mode-ui="enabled: false"
       renderer="logarithmicDepthBuffer: true;"
+      embedded
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-      
-      <!-- Marcador oficial Pinball -->
+
+      <!-- Marcador NFT -->
       <a-nft
         type="nft"
-        url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/data/dataNFT/pinball/pinball"
+        url="markers/pinball/pinball"
         smooth="true"
         smoothCount="10"
         smoothTolerance="0.01"
         smoothThreshold="5">
         
-        <!-- Contenido AR: imagen de ejemplo -->
-        <a-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Hydrogen_Spectra.jpg/320px-Hydrogen_Spectra.jpg"
-                 width="1"
-                 height="0.75"
-                 position="0 0 0.1">
-        </a-image>
+        <!-- Contenido que aparece sobre el marcador -->
+        <a-image src="images/pinball.jpg" width="1" height="1"></a-image>
       </a-nft>
 
+      <!-- Cámara AR -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
