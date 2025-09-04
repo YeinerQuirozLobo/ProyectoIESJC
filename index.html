@@ -1,28 +1,38 @@
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <title>Prueba AR.js - Pinball</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://cdn.rawgit.com/AR-js-org/AR.js/3.3.2/aframe/build/aframe-ar-nft.js"></script>
+    <style>
+      body, html { margin: 0; padding: 0; overflow: hidden; }
+    </style>
   </head>
-  <body style="margin: 0; overflow: hidden;">
+  <body>
     <a-scene
-      vr-mode-ui="enabled: false;"
       embedded
+      vr-mode-ui="enabled: false"
+      renderer="logarithmicDepthBuffer: true;"
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
       
-      <!-- Marcador NFT del Hidrógeno -->
+      <!-- Marcador oficial Pinball -->
       <a-nft
         type="nft"
-        url="markers/h/h"
+        url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/data/dataNFT/pinball/pinball"
         smooth="true"
         smoothCount="10"
         smoothTolerance="0.01"
         smoothThreshold="5">
         
-        <!-- Imagen vinculada al marcador -->
-        <a-image src="images/h.jpg" width="1" height="1.5"></a-image>
+        <!-- Contenido AR: imagen de ejemplo -->
+        <a-image src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Hydrogen_Spectra.jpg/320px-Hydrogen_Spectra.jpg"
+                 width="1"
+                 height="0.75"
+                 position="0 0 0.1">
+        </a-image>
       </a-nft>
-      
-      <!-- Cámara -->
+
       <a-entity camera></a-entity>
     </a-scene>
   </body>
