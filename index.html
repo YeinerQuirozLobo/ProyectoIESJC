@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla Periódica AR - NFT Markers</title>
+  <title>Prueba AR - Hiro + NFT</title>
 
   <!-- A-Frame y AR.js -->
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
@@ -22,7 +22,6 @@
       font-family: Arial, sans-serif;
       font-size: 1.2em;
       color: black;
-	z-index: 999;
     }
   </style>
 </head>
@@ -30,31 +29,32 @@
   <div id="loading">🔍 Cargando AR... apunta la cámara al marcador</div>
 
   <a-scene 
-    embedded 
+    embedded
     vr-mode-ui="enabled: false"
-	renderer="logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
     
     <!-- Cámara -->
     <a-entity camera></a-entity>
 
-    <!-- 1 - Hidrógeno -->
-    
-<a-nft
-  type="nft"
-  url="https://yeinerquirozlobo.github.io/ProyectoIESJC/markers/bloque0/h"
-  smooth="true"
-  smoothCount="10"
-  smoothTolerance="0.01"
-  smoothThreshold="5">
-  
-      <a-image
-        src="images/bloque0/h.jpg"
-        position="0 0 0"
-        rotation="-90 0 0"
+    <!-- 1. Hiro Marker (para prueba rápida) -->
+    <a-marker preset="hiro">
+      <a-box color="red" depth="0.5" height="0.5" width="0.5"></a-box>
+    </a-marker>
+
+    <!-- 2. NFT Marker (Hidrógeno) -->
+    <a-nft
+      type="nft"
+      url="markers/bloque0/h"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance="0.01"
+      smoothThreshold="5">
+      <a-plane 
+        src="images/h.jpg"
+        height="1"
         width="1"
-        height="1">
-      </a-image>
+        rotation="-90 0 0">
+      </a-plane>
     </a-nft>
 
   </a-scene>
@@ -64,6 +64,7 @@
     const loading = document.getElementById('loading');
     document.querySelector('a-scene').addEventListener('loaded', () => {
       loading.style.display = 'none';
+      console.log("✅ Escena cargada, lista para detectar marcadores.");
     });
   </script>
 </body>
