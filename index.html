@@ -24,58 +24,56 @@
   </style>
 </head>
 <body>
-  <a-scene mindar-image="imageTargetSrc: targets/h.mind, targets/he.mind, targets/li.mind, targets/be.mind, targets/b.mind, targets/c.mind, targets/n.mind, targets/o.mind, targets/f.mind;" 
-           color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-
+  <a-scene id="escena"
+    color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
+    
     <a-camera position="0 0 0" look-controls="enabled: true"></a-camera>
-
-    <!-- H -->
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-image src="images/h.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- He -->
-    <a-entity mindar-image-target="targetIndex: 1">
-      <a-image src="images/he.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- Li -->
-    <a-entity mindar-image-target="targetIndex: 2">
-      <a-image src="images/li.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- Be -->
-    <a-entity mindar-image-target="targetIndex: 3">
-      <a-image src="images/be.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- B -->
-    <a-entity mindar-image-target="targetIndex: 4">
-      <a-image src="images/b.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- C -->
-    <a-entity mindar-image-target="targetIndex: 5">
-      <a-image src="images/c.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- N -->
-    <a-entity mindar-image-target="targetIndex: 6">
-      <a-image src="images/n.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- O -->
-    <a-entity mindar-image-target="targetIndex: 7">
-      <a-image src="images/o.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
-    <!-- F -->
-    <a-entity mindar-image-target="targetIndex: 8">
-      <a-image src="images/f.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
-    </a-entity>
-
   </a-scene>
 
   <div class="marca-agua">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
+
+  <script>
+    // Lista completa de los 118 elementos con número atómico y símbolo
+    const elementos = [
+      "1H","2He","3Li","4Be","5B","6C","7N","8O","9F","10Ne",
+      "11Na","12Mg","13Al","14Si","15P","16S","17Cl","18Ar","19K","20Ca",
+      "21Sc","22Ti","23V","24Cr","25Mn","26Fe","27Co","28Ni","29Cu","30Zn",
+      "31Ga","32Ge","33As","34Se","35Br","36Kr","37Rb","38Sr","39Y","40Zr",
+      "41Nb","42Mo","43Tc","44Ru","45Rh","46Pd","47Ag","48Cd","49In","50Sn",
+      "51Sb","52Te","53I","54Xe","55Cs","56Ba","57La","58Ce","59Pr","60Nd",
+      "61Pm","62Sm","63Eu","64Gd","65Tb","66Dy","67Ho","68Er","69Tm","70Yb",
+      "71Lu","72Hf","73Ta","74W","75Re","76Os","77Ir","78Pt","79Au","80Hg",
+      "81Tl","82Pb","83Bi","84Po","85At","86Rn","87Fr","88Ra","89Ac","90Th",
+      "91Pa","92U","93Np","94Pu","95Am","96Cm","97Bk","98Cf","99Es","100Fm",
+      "101Md","102No","103Lr","104Rf","105Db","106Sg","107Bh","108Hs","109Mt","110Ds",
+      "111Rg","112Cn","113Nh","114Fl","115Mc","116Lv","117Ts","118Og"
+    ];
+
+    // Construir el atributo imageTargetSrc con todos los .mind
+    const targetPaths = elementos.map(el => `targets/${el}.mind`).join(", ");
+
+    // Seleccionar la escena
+    const escena = document.getElementById("escena");
+    escena.setAttribute("mindar-image", `imageTargetSrc: ${targetPaths};`);
+
+    // Crear dinámicamente las entidades
+    elementos.forEach((el, index) => {
+      const entity = document.createElement("a-entity");
+      entity.setAttribute("mindar-image-target", `targetIndex: ${index}`);
+      
+      const image = document.createElement("a-image");
+      image.setAttribute("src", `images/${el}.png`);
+      image.setAttribute("position", "0 0 0");
+      image.setAttribute("rotation", "0 0 0");
+      image.setAttribute("height", "1");
+      image.setAttribute("width", "1");
+
+      entity.appendChild(image);
+      escena.appendChild(entity);
+    });
+  </script>
 </body>
 </html>
