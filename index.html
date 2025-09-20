@@ -41,7 +41,56 @@
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- Elementos -->
+    <!-- Elementos --><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba AR - Hidrógeno</title>
+
+  <!-- A-Frame primero -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- Luego MindAR -->
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
+
+  <style>
+    .watermark {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 10px;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Marca de agua -->
+  <div class="watermark">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
+
+  <!-- Escena AR -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/h.mind;" 
+           vr-mode-ui="enabled: false" 
+           device-orientation-permission-ui="enabled: false">
+    
+    <a-assets>
+      <!-- Imagen superpuesta -->
+      <img id="hidrogeno" src="./images/h.png" />
+    </a-assets>
+
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Cuando detecte el marcador, mostrará esta imagen -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hidrogeno" position="0 0 0" height="1" width="1"></a-plane>
+    </a-entity>
+  </a-scene>
+</body>
+</html>
     <a-entity mindar-image-target="src: ./targets/1H.mind; targetIndex: 0">
       <a-plane src="#1H" position="0 0 0" height="2" width="2"></a-plane>
     </a-entity>
