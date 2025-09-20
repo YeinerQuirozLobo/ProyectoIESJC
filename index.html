@@ -30,13 +30,14 @@
   <div class="watermark">Tabla Periodica RA - I. E. San José del Citará</div>
 
   <!-- Escena AR -->
-  <a-scene mindar-image="imageTargetSrc: ./targets/1H.mind;" 
+  <a-scene mindar-image="imageTargetSrc: ./targets/; autoStart: true;" 
            vr-mode-ui="enabled: false" 
            device-orientation-permission-ui="enabled: false">
     
     <a-assets>
       <!-- Imagen superpuesta -->
       <img id="hidrogeno" src="./images/1H.png" />
+      <img id="hidrogeno" src="./images/2He.png" />
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -51,7 +52,9 @@
     <a-entity mindar-image-target="src: ./targets/1H.mind; targetIndex: 0">
       <a-plane src="#1H" position="0 0 0" height="2" width="2"></a-plane>
     </a-entity>
-
+    <a-entity mindar-image-target="src: ./targets/2He.mind; targetIndex: 0">
+      <a-plane src="#2He" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
   </a-scene>
 </body>
 </html>
