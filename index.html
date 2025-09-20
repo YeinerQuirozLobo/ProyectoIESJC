@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba AR - Hidrógeno</title>
+  <title>Tabla Periódica AR</title>
 
-  <!-- A-Frame primero -->
+  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- Luego MindAR -->
+  <!-- MindAR -->
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
@@ -30,21 +30,55 @@
   <div class="watermark">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
   <!-- Escena AR -->
-  <a-scene mindar-image="imageTargetSrc: ./targets/1H.mind;" 
-           vr-mode-ui="enabled: false" 
-           device-orientation-permission-ui="enabled: false">
-    
-    <a-assets>
-      <!-- Imagen superpuesta -->
-      <img id="hidrogeno" src="./images/1H.png" />
-    </a-assets>
-
+  <a-scene vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets id="assets-container"></a-assets>
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-    <!-- Cuando detecte el marcador, mostrará esta imagen -->
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-plane src="#hidrogeno" position="0 0 0" height="2" width="2"></a-plane>
-    </a-entity>
+    <a-entity id="elements-container"></a-entity>
   </a-scene>
+
+  <script>
+    // Lista con los símbolos de los 118 elementos
+    const elementos = [
+      "H","He","Li","Be","B","C","N","O","F","Ne",
+      "Na","Mg","Al","Si","P","S","Cl","Ar","K","Ca",
+      "Sc","Ti","V","Cr","Mn","Fe","Co","Ni","Cu","Zn",
+      "Ga","Ge","As","Se","Br","Kr","Rb","Sr","Y","Zr",
+      "Nb","Mo","Tc","Ru","Rh","Pd","Ag","Cd","In","Sn",
+      "Sb","Te","I","Xe","Cs","Ba","La","Ce","Pr","Nd",
+      "Pm","Sm","Eu","Gd","Tb","Dy","Ho","Er","Tm","Yb",
+      "Lu","Hf","Ta","W","Re","Os","Ir","Pt","Au","Hg",
+      "Tl","Pb","Bi","Po","At","Rn","Fr","Ra","Ac","Th",
+      "Pa","U","Np","Pu","Am","Cm","Bk","Cf","Es","Fm",
+      "Md","No","Lr","Rf","Db","Sg","Bh","Hs","Mt","Ds",
+      "Rg","Cn","Nh","Fl","Mc","Lv","Ts","Og"
+    ];
+
+    const assets = document.getElementById("assets-container");
+    const container = document.getElementById("elements-container");
+
+    elementos.forEach((simbolo, index) => {
+      const numero = index + 1;
+      const idImg = `${numero}${simbolo}`;
+
+      // Añadir imagen a <a-assets>
+      const img = document.createElement("img");
+      img.setAttribute("id", idImg);
+      img.setAttribute("src", `./images/${idImg}.png`);
+      assets.appendChild(img);
+
+      // Crear target para cada elemento
+      const entity = document.createElement("a-entity");
+      entity.setAttribute("mindar-image-target", `imageTargetSrc: ./targets/${idImg}.mind; targetIndex: 0`);
+
+      const plane = document.createElement("a-plane");
+      plane.setAttribute("src", `#${idImg}`);
+      plane.setAttribute("position", "0 0 0");
+      plane.setAttribute("height", "2");
+      plane.setAttribute("width", "2");
+
+      entity.appendChild(plane);
+      container.appendChild(entity);
+    });
+  </script>
 </body>
 </html>
