@@ -1,50 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba AR - Hidrógeno</title>
-
-  <!-- A-Frame primero -->
-  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- Luego MindAR -->
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
-
+  <title>Tabla Periódica AR - Bloques</title>
   <style>
-    .watermark {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      font-size: 14px;
-      font-weight: bold;
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: #0056b3;
       color: white;
-      background: rgba(0,0,0,0.5);
-      padding: 5px 10px;
-      border-radius: 8px;
-      z-index: 1000;
+      padding: 20px 10px;
+    }
+    h1 {
+      margin: 0;
+    }
+    .contenedor {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .bloque {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease-in-out;
+    }
+    .bloque:hover {
+      transform: scale(1.05);
+    }
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #0056b3;
+      font-size: 18px;
+    }
+    footer {
+      background: #333;
+      color: white;
+      padding: 15px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <!-- Marca de agua -->
-  <div class="watermark">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
+  <header>
+    <h1>Tabla Periódica AR</h1>
+    <p>Selecciona un bloque de elementos</p>
+  </header>
 
-  <!-- Escena AR -->
-  <a-scene mindar-image="imageTargetSrc: ./targets/h.mind;" 
-           vr-mode-ui="enabled: false" 
-           device-orientation-permission-ui="enabled: false">
-    
-    <a-assets>
-      <!-- Imagen superpuesta -->
-      <img id="hidrogeno" src="./images/h.png" />
-    </a-assets>
+  <div class="contenedor">
+    <div class="bloque"><a href="bloque1.html">Bloque 1: Elementos 1 - 9</a></div>
+    <div class="bloque"><a href="bloque2.html">Bloque 2: Elementos 10 - 19</a></div>
+    <div class="bloque"><a href="bloque3.html">Bloque 3: Elementos 20 - 29</a></div>
+    <div class="bloque"><a href="bloque4.html">Bloque 4: Elementos 30 - 39</a></div>
+    <div class="bloque"><a href="bloque5.html">Bloque 5: Elementos 40 - 49</a></div>
+    <div class="bloque"><a href="bloque6.html">Bloque 6: Elementos 50 - 59</a></div>
+    <div class="bloque"><a href="bloque7.html">Bloque 7: Elementos 60 - 69</a></div>
+    <div class="bloque"><a href="bloque8.html">Bloque 8: Elementos 70 - 79</a></div>
+    <div class="bloque"><a href="bloque9.html">Bloque 9: Elementos 80 - 89</a></div>
+    <div class="bloque"><a href="bloque10.html">Bloque 10: Elementos 90 - 99</a></div>
+    <div class="bloque"><a href="bloque11.html">Bloque 11: Elementos 100 - 109</a></div>
+    <div class="bloque"><a href="bloque12.html">Bloque 12: Elementos 110 - 118</a></div>
+  </div>
 
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-    <!-- Cuando detecte el marcador, mostrará esta imagen -->
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-plane src="#hidrogeno" position="0 0 0" height="1" width="1"></a-plane>
-    </a-entity>
-  </a-scene>
+  <footer>
+    <p>Proyecto AR - I. E. San José del Citará - Yeiner Quiroz Lobo</p>
+  </footer>
 </body>
 </html>
+
