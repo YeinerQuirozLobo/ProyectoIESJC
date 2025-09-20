@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla Periódica AR</title>
+  <title>Prueba AR - Hidrógeno</title>
 
-  <!-- A-Frame y MindAR -->
+  <!-- A-Frame primero -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- Luego MindAR -->
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
@@ -28,45 +29,22 @@
   <!-- Marca de agua -->
   <div class="watermark">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
-  <script>
-    // Lista completa de los 118 elementos con número atómico y símbolo
-    const elementos = [
-      "1H","2He","3Li","4Be","5B","6C","7N","8O","9F","10Ne",
-      "11Na","12Mg","13Al","14Si","15P","16S","17Cl","18Ar","19K","20Ca",
-      "21Sc","22Ti","23V","24Cr","25Mn","26Fe","27Co","28Ni","29Cu","30Zn",
-      "31Ga","32Ge","33As","34Se","35Br","36Kr","37Rb","38Sr","39Y","40Zr",
-      "41Nb","42Mo","43Tc","44Ru","45Rh","46Pd","47Ag","48Cd","49In","50Sn",
-      "51Sb","52Te","53I","54Xe","55Cs","56Ba","57La","58Ce","59Pr","60Nd",
-      "61Pm","62Sm","63Eu","64Gd","65Tb","66Dy","67Ho","68Er","69Tm","70Yb",
-      "71Lu","72Hf","73Ta","74W","75Re","76Os","77Ir","78Pt","79Au","80Hg",
-      "81Tl","82Pb","83Bi","84Po","85At","86Rn","87Fr","88Ra","89Ac","90Th",
-      "91Pa","92U","93Np","94Pu","95Am","96Cm","97Bk","98Cf","99Es","100Fm",
-      "101Md","102No","103Lr","104Rf","105Db","106Sg","107Bh","108Hs","109Mt","110Ds",
-      "111Rg","112Cn","113Nh","114Fl","115Mc","116Lv","117Ts","118Og"
-    ];
+  <!-- Escena AR -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/h.mind;" 
+           vr-mode-ui="enabled: false" 
+           device-orientation-permission-ui="enabled: false">
+    
+    <a-assets>
+      <!-- Imagen superpuesta -->
+      <img id="hidrogeno" src="./images/h.png" />
+    </a-assets>
 
-    // Construir el atributo imageTargetSrc con todos los .mind
-    const targetPaths = elementos.map(el => `targets/${el}.mind`).join(", ");
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    // Seleccionar la escena
-    const escena = document.getElementById("escena");
-    escena.setAttribute("mindar-image", `imageTargetSrc: ${targetPaths};`);
-
-    // Crear dinámicamente las entidades
-    elementos.forEach((el, index) => {
-      const entity = document.createElement("a-entity");
-      entity.setAttribute("mindar-image-target", `targetIndex: ${index}`);
-      
-      const image = document.createElement("a-image");
-      image.setAttribute("src", `images/${el}.png`);
-      image.setAttribute("position", "0 0 0");
-      image.setAttribute("rotation", "0 0 0");
-      image.setAttribute("height", "1");
-      image.setAttribute("width", "1");
-
-      entity.appendChild(image);
-      escena.appendChild(entity);
-    });
-  </script>
+    <!-- Cuando detecte el marcador, mostrará esta imagen -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hidrogeno" position="0 0 0" height="1" width="1"></a-plane>
+    </a-entity>
+  </a-scene>
 </body>
 </html>
