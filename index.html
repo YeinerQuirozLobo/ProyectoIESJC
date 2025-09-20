@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla Periódica AR</title>
+  <title>Prueba AR - Hidrógeno</title>
 
   <!-- A-Frame primero -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
@@ -26,10 +26,25 @@
   </style>
 </head>
 <body>
+  <!-- Marca de agua -->
   <div class="watermark">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
-  <a-scene mindar-image="imageTargetSrc: ./targets/targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+  <!-- Escena AR -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/h.mind;" 
+           vr-mode-ui="enabled: false" 
+           device-orientation-permission-ui="enabled: false">
+    
+    <a-assets>
+      <!-- Imagen superpuesta -->
+      <img id="hidrogeno" src="./images/h.png" />
+    </a-assets>
+
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Cuando detecte el marcador, mostrará esta imagen -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hidrogeno" position="0 0 0" height="1" width="1"></a-plane>
+    </a-entity>
   </a-scene>
 </body>
 </html>
