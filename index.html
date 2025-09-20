@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla Periódica AR - Bloques</title>
+  <title>Tabla Periódica AR</title>
+
+  <!-- A-Frame y MindAR -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background: #0056b3;
+    body { margin: 0; overflow: hidden; }
+    .marca-agua {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
       color: white;
-      padding: 20px 10px;
-    }
-    h1 {
-      margin: 0;
-    }
-    .contenedor {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 30px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .bloque {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-      transition: transform 0.2s ease-in-out;
-    }
-    .bloque:hover {
-      transform: scale(1.05);
-    }
-    a {
-      text-decoration: none;
-      font-weight: bold;
-      color: #0056b3;
-      font-size: 18px;
-    }
-    footer {
-      background: #333;
-      color: white;
-      padding: 15px;
-      margin-top: 20px;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 10px;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Tabla Periódica AR</h1>
-    <p>Selecciona un bloque de elementos</p>
-  </header>
+  <a-scene mindar-image="imageTargetSrc: targets/h.mind, targets/he.mind, targets/li.mind, targets/be.mind, targets/b.mind, targets/c.mind, targets/n.mind, targets/o.mind, targets/f.mind;" 
+           color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 
-  <div class="contenedor">
-    <div class="bloque"><a href="bloque1.html">Bloque 1: Elementos 1 - 9</a></div>
-    <div class="bloque"><a href="bloque2.html">Bloque 2: Elementos 10 - 19</a></div>
-    <div class="bloque"><a href="bloque3.html">Bloque 3: Elementos 20 - 29</a></div>
-    <div class="bloque"><a href="bloque4.html">Bloque 4: Elementos 30 - 39</a></div>
-    <div class="bloque"><a href="bloque5.html">Bloque 5: Elementos 40 - 49</a></div>
-    <div class="bloque"><a href="bloque6.html">Bloque 6: Elementos 50 - 59</a></div>
-    <div class="bloque"><a href="bloque7.html">Bloque 7: Elementos 60 - 69</a></div>
-    <div class="bloque"><a href="bloque8.html">Bloque 8: Elementos 70 - 79</a></div>
-    <div class="bloque"><a href="bloque9.html">Bloque 9: Elementos 80 - 89</a></div>
-    <div class="bloque"><a href="bloque10.html">Bloque 10: Elementos 90 - 99</a></div>
-    <div class="bloque"><a href="bloque11.html">Bloque 11: Elementos 100 - 109</a></div>
-    <div class="bloque"><a href="bloque12.html">Bloque 12: Elementos 110 - 118</a></div>
-  </div>
+    <a-camera position="0 0 0" look-controls="enabled: true"></a-camera>
 
-  <footer>
-    <p>Proyecto AR - I. E. San José del Citará - Yeiner Quiroz Lobo</p>
-  </footer>
+    <!-- H -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-image src="images/h.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- He -->
+    <a-entity mindar-image-target="targetIndex: 1">
+      <a-image src="images/he.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- Li -->
+    <a-entity mindar-image-target="targetIndex: 2">
+      <a-image src="images/li.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- Be -->
+    <a-entity mindar-image-target="targetIndex: 3">
+      <a-image src="images/be.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- B -->
+    <a-entity mindar-image-target="targetIndex: 4">
+      <a-image src="images/b.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- C -->
+    <a-entity mindar-image-target="targetIndex: 5">
+      <a-image src="images/c.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- N -->
+    <a-entity mindar-image-target="targetIndex: 6">
+      <a-image src="images/n.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- O -->
+    <a-entity mindar-image-target="targetIndex: 7">
+      <a-image src="images/o.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+    <!-- F -->
+    <a-entity mindar-image-target="targetIndex: 8">
+      <a-image src="images/f.png" position="0 0 0" rotation="0 0 0" height="1" width="1"></a-image>
+    </a-entity>
+
+  </a-scene>
+
+  <div class="marca-agua">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 </body>
 </html>
-
