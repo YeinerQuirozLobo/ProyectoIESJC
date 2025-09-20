@@ -2,54 +2,34 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tabla Periódica AR</title>
-  <script src="https://cdn.jsdelivr.net/npm/aframe@1.5.0/dist/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar/dist/mindar-image-aframe.prod.js"></script>
+
+  <!-- A-Frame primero -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- Luego MindAR -->
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
+
   <style>
-    body { margin: 0; overflow: hidden; }
-
-    /* Texto de carga */
-    #texto-carga {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-family: sans-serif;
-      z-index: 2;
-    }
-
-    /* Marca de agua */
-    #marca-agua {
-      position: absolute;
+    .watermark {
+      position: fixed;
       bottom: 10px;
       left: 10px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.7); /* Blanco semitransparente */
-      font-family: sans-serif;
-      z-index: 2;
-      pointer-events: none;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 10px;
+      border-radius: 8px;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <div id="texto-carga">Apunta tu cámara a un marcador</div>
-  <div id="marca-agua">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
+  <div class="watermark">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
-  <a-scene mindar-image="imageTargetSrc: ./assets/markers/targets.mind;" 
-           color-space="sRGB" 
-           renderer="colorManagement: true, physicallyCorrectLights" 
-           vr-mode-ui="enabled: false" 
-           device-orientation-permission-ui="enabled: false">
-
-    <a-assets>
-      <img id="img-h" src="./assets/images/H.png">
-      <img id="img-he" src="./assets/images/He.png">
-      <img id="img-li" src="./assets/images/Li.png">
-      <img id="img-be" src="./assets/images/Be.png">
-      <img id="img-b" src="./assets/images/B.png">
-      <img id="img-c" src="./assets/images/C.png">
-      <img id="img-n" src="./assets/images/N.png">
-      <img id="img-o" src="./assets/images/O.png">
+  <a-scene mindar-image="imageTargetSrc: ./targets/targets.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  </a-scene>
+</body>
+</html>
