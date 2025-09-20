@@ -1,79 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba AR - Hiro + NFT</title>
-
-  <!-- A-Frame y AR.js -->
-  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
-
+  <meta charset="UTF-8">
+  <title>Tabla Periódica AR</title>
+  <script src="https://cdn.jsdelivr.net/npm/aframe@1.5.0/dist/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar/dist/mindar-image-aframe.prod.js"></script>
   <style>
     body { margin: 0; overflow: hidden; }
-    #loading {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-family: Arial, sans-serif;
-      font-size: 1.2em;
-      color: black;
+
+    /* Texto de carga */
+    #texto-carga {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-family: sans-serif;
+      z-index: 2;
+    }
+
+    /* Marca de agua */
+    #marca-agua {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7); /* Blanco semitransparente */
+      font-family: sans-serif;
+      z-index: 2;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <div id="loading">🔍 Cargando AR... apunta la cámara al marcador</div>
+  <div id="texto-carga">Apunta tu cámara a un marcador</div>
+  <div id="marca-agua">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
-  <a-scene 
-    embedded
-    vr-mode-ui="enabled: false"
-    arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
-    
-    <!-- Cámara -->
-    <a-entity camera></a-entity>
+  <a-scene mindar-image="imageTargetSrc: ./assets/markers/targets.mind;" 
+           color-space="sRGB" 
+           renderer="colorManagement: true, physicallyCorrectLights" 
+           vr-mode-ui="enabled: false" 
+           device-orientation-permission-ui="enabled: false">
 
-    <!-- 1. Hiro Marker (para prueba rápida) -->
-    <a-marker preset="hiro">
-      <a-image 
-          src="images/oxigeno.jpg" 
-          width="2" 
-          height="2" 
-          rotation="-90 0 0" 
-          position="0 0 0">
-        </a-image>
-        
-      </a-marker>
-
-
-    <!-- 2. NFT Marker (Hidrógeno) -->
-    <a-nft
-      type="nft"
-      url="markers/bloque0/he"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance="0.01"
-      smoothThreshold="5">
-      <a-image 
-        src="images/bloque0/he.jpg"
-        height="1"
-        width="1"
-        rotation="-90 0 0">
-      </a-image>
-    </a-nft>
-
-  </a-scene>
-
-  <script>
-    // Ocultar mensaje de carga cuando la escena esté lista
-    const loading = document.getElementById('loading');
-    document.querySelector('a-scene').addEventListener('loaded', () => {
-      loading.style.display = 'none';
-      console.log("✅ Escena cargada, lista para detectar marcadores.");
-    });
-  </script>
-</body>
-</html>
+    <a-assets>
+      <img id="img-h" src="./assets/images/H.png">
+      <img id="img-he" src="./assets/images/He.png">
+      <img id="img-li" src="./assets/images/Li.png">
+      <img id="img-be" src="./assets/images/Be.png">
+      <img id="img-b" src="./assets/images/B.png">
+      <img id="img-c" src="./assets/images/C.png">
+      <img id="img-n" src="./assets/images/N.png">
+      <img id="img-o" src="./assets/images/O.png">
