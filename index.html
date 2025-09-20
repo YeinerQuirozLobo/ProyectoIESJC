@@ -43,6 +43,9 @@
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
     <!-- Cuando detecte el marcador, mostrará esta imagen -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hidrogeno" position="0 0 0" height="1" width="1"></a-plane>
+    </a-entity>
     <a-entity mindar-image-target="src: ./targets/1H.mind; targetIndex: 0">
       <a-plane src="#1H" position="0 0 0" height="2" width="2"></a-plane>
     </a-entity>
