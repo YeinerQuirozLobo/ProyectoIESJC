@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla Periódica AR Dinámica</title>
+  <title>Prueba AR - Bloques de elementos</title>
 
   <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
@@ -26,79 +26,125 @@
   </style>
 </head>
 <body>
+  <!-- Marca de agua -->
   <div class="watermark">I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
-  <!-- Escena vacía -->
-  <a-scene id="escena-ar" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-    <a-assets id="assets"></a-assets>
+  <!-- ===================== BLOQUE 1 (1H - 9F) ===================== -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/bloque1.mind;" 
+           vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+
+    <a-assets>
+      <img id="hidrogeno" src="./images/1H.png" />
+      <img id="helio" src="./images/2He.png" />
+      <img id="litio" src="./images/3Li.png" />
+      <img id="berilio" src="./images/4Be.png" />
+      <img id="boro" src="./images/5B.png" />
+      <img id="carbono" src="./images/6C.png" />
+      <img id="nitrogeno" src="./images/7N.png" />
+      <img id="oxigeno" src="./images/8O.png" />
+      <img id="fluor" src="./images/9F.png" />
+    </a-assets>
+
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Cada targetIndex corresponde al orden en que exportaste las imágenes al crear bloque1.mind -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hidrogeno" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 1">
+      <a-plane src="#helio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 2">
+      <a-plane src="#litio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 3">
+      <a-plane src="#berilio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 4">
+      <a-plane src="#boro" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 5">
+      <a-plane src="#carbono" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 6">
+      <a-plane src="#nitrogeno" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 7">
+      <a-plane src="#oxigeno" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 8">
+      <a-plane src="#fluor" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
   </a-scene>
 
-  <script>
-    // Lista de elementos con su marcador (.mind) y su imagen
-    const elementos = {
-      "1H": {mind: "./targets/1H.mind", img: "./images/1H.png"},
-      "2He": {mind: "./targets/2He.mind", img: "./images/2He.png"},
-      "3Li": {mind: "./targets/3Li.mind", img: "./images/3Li.png"},
-      // 👉 aquí irían hasta los 118
-    };
 
-    const escena = document.querySelector("#escena-ar");
-    const assets = document.querySelector("#assets");
+  <!-- ===================== BLOQUE 2 (10Ne - 19K) ===================== -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/bloque2.mind;" 
+           vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 
-    let entidadActiva = null; // Para saber qué marcador está activo
+    <a-assets>
+      <img id="neon" src="./images/10Ne.png" />
+      <img id="sodio" src="./images/11Na.png" />
+      <img id="magnesio" src="./images/12Mg.png" />
+      <img id="aluminio" src="./images/13Al.png" />
+      <img id="silicio" src="./images/14Si.png" />
+      <img id="fosforo" src="./images/15P.png" />
+      <img id="azufre" src="./images/16S.png" />
+      <img id="cloro" src="./images/17Cl.png" />
+      <img id="argon" src="./images/18Ar.png" />
+      <img id="potasio" src="./images/19K.png" />
+    </a-assets>
 
-    // Función para cargar dinámicamente un marcador
-    function cargarElemento(nombre) {
-      limpiarEscena();
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-      const data = elementos[nombre];
-      if (!data) return;
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#neon" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-      // Añadir imagen
-      const img = document.createElement("img");
-      img.setAttribute("id", nombre);
-      img.setAttribute("src", data.img);
-      assets.appendChild(img);
+    <a-entity mindar-image-target="targetIndex: 1">
+      <a-plane src="#sodio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-      // Crear target dinámico
-      const target = document.createElement("a-entity");
-      target.setAttribute("mindar-image-target", "targetIndex: 0");
+    <a-entity mindar-image-target="targetIndex: 2">
+      <a-plane src="#magnesio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-      // Crear plano
-      const plane = document.createElement("a-plane");
-      plane.setAttribute("src", "#" + nombre);
-      plane.setAttribute("height", "2");
-      plane.setAttribute("width", "2");
-      plane.setAttribute("visible", "false");
+    <a-entity mindar-image-target="targetIndex: 3">
+      <a-plane src="#aluminio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-      target.appendChild(plane);
-      escena.appendChild(target);
+    <a-entity mindar-image-target="targetIndex: 4">
+      <a-plane src="#silicio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-      // Eventos de detección
-      target.addEventListener("targetFound", () => {
-        plane.setAttribute("visible", "true");
-        entidadActiva = nombre;
-      });
-      target.addEventListener("targetLost", () => {
-        plane.setAttribute("visible", "false");
-        entidadActiva = null;
-      });
+    <a-entity mindar-image-target="targetIndex: 5">
+      <a-plane src="#fosforo" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-      // Cambiar el archivo .mind del scene
-      escena.setAttribute("mindar-image", `imageTargetSrc: ${data.mind}`);
-    }
+    <a-entity mindar-image-target="targetIndex: 6">
+      <a-plane src="#azufre" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-    // Limpia la escena para cargar un nuevo elemento
-    function limpiarEscena() {
-      // Eliminar planos e imágenes previas
-      document.querySelectorAll("a-plane").forEach(p => p.remove());
-      document.querySelectorAll("a-entity[mindar-image-target]").forEach(t => t.remove());
-      assets.innerHTML = "";
-    }
+    <a-entity mindar-image-target="targetIndex: 7">
+      <a-plane src="#cloro" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
 
-    // 🚀 PRUEBA: arrancar con Hidrógeno
-    cargarElemento("1H");
-  </script>
+    <a-entity mindar-image-target="targetIndex: 8">
+      <a-plane src="#argon" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+
+    <a-entity mindar-image-target="targetIndex: 9">
+      <a-plane src="#potasio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+
 </body>
 </html>
