@@ -2,74 +2,103 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Tabla Periódica AR</title>
-  <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla Periódica AR Dinámica</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- MindAR -->
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
+
   <style>
-    body { margin: 0; overflow: hidden; }
-    #loading {
+    .watermark {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-family: Arial, sans-serif;
-      z-index: 10;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 10px;
+      border-radius: 8px;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <div id="loading">Cargando cámara...</div>
+  <div class="watermark">I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
-  <a-scene
-    mindar-image="autoStart: true; uiScanning: true;"
-    embedded
-    color-space="sRGB"
-    renderer="colorManagement: true, physicallyCorrectLights"
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false">
-
+  <!-- Escena vacía -->
+  <a-scene id="escena-ar" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets id="assets"></a-assets>
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-    <a-entity id="markers-container"></a-entity>
   </a-scene>
 
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      document.querySelector("#loading").style.display = "none";
-    });
+    // Lista de elementos con su marcador (.mind) y su imagen
+    const elementos = {
+      "1H": {mind: "./targets/1H.mind", img: "./images/1H.png"},
+      "2He": {mind: "./targets/2He.mind", img: "./images/2He.png"},
+      "3Li": {mind: "./targets/3Li.mind", img: "./images/3Li.png"},
+      // 👉 aquí irían hasta los 118
+    };
 
-    const container = document.querySelector("#markers-container");
+    const escena = document.querySelector("#escena-ar");
+    const assets = document.querySelector("#assets");
 
-    // Lista de elementos químicos (1–10)
-    const elements = [
-      {num: 1, sym: "H"},
-      {num: 2, sym: "He"},
-      {num: 3, sym: "Li"},
-      {num: 4, sym: "Be"},
-      {num: 5, sym: "B"},
-      {num: 6, sym: "C"},
-      {num: 7, sym: "N"},
-      {num: 8, sym: "O"},
-      {num: 9, sym: "F"},
-      {num: 10, sym: "Ne"},
-    ];
+    let entidadActiva = null; // Para saber qué marcador está activo
 
-    // Crear dinámicamente cada target
-    elements.forEach(el => {
-      const marker = document.createElement("a-entity");
-      marker.setAttribute("mindar-image", `imageTargetSrc: ./markers/${el.num}${el.sym}.mind`);
-      marker.setAttribute("autoStart", "false");
+    // Función para cargar dinámicamente un marcador
+    function cargarElemento(nombre) {
+      limpiarEscena();
 
+      const data = elementos[nombre];
+      if (!data) return;
+
+      // Añadir imagen
+      const img = document.createElement("img");
+      img.setAttribute("id", nombre);
+      img.setAttribute("src", data.img);
+      assets.appendChild(img);
+
+      // Crear target dinámico
+      const target = document.createElement("a-entity");
+      target.setAttribute("mindar-image-target", "targetIndex: 0");
+
+      // Crear plano
       const plane = document.createElement("a-plane");
-      plane.setAttribute("src", `./images/${el.num}${el.sym}.png`);
-      plane.setAttribute("position", "0 0 0");
+      plane.setAttribute("src", "#" + nombre);
       plane.setAttribute("height", "2");
       plane.setAttribute("width", "2");
+      plane.setAttribute("visible", "false");
 
-      marker.appendChild(plane);
-      container.appendChild(marker);
-    });
+      target.appendChild(plane);
+      escena.appendChild(target);
+
+      // Eventos de detección
+      target.addEventListener("targetFound", () => {
+        plane.setAttribute("visible", "true");
+        entidadActiva = nombre;
+      });
+      target.addEventListener("targetLost", () => {
+        plane.setAttribute("visible", "false");
+        entidadActiva = null;
+      });
+
+      // Cambiar el archivo .mind del scene
+      escena.setAttribute("mindar-image", `imageTargetSrc: ${data.mind}`);
+    }
+
+    // Limpia la escena para cargar un nuevo elemento
+    function limpiarEscena() {
+      // Eliminar planos e imágenes previas
+      document.querySelectorAll("a-plane").forEach(p => p.remove());
+      document.querySelectorAll("a-entity[mindar-image-target]").forEach(t => t.remove());
+      assets.innerHTML = "";
+    }
+
+    // 🚀 PRUEBA: arrancar con Hidrógeno
+    cargarElemento("1H");
   </script>
 </body>
 </html>
