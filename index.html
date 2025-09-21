@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prueba AR - Hidrógeno</title>
+  <title>Tabla Periódica AR</title>
 
-  <!-- A-Frame primero -->
+  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  <!-- Luego MindAR -->
+  <!-- MindAR -->
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
@@ -27,48 +27,1428 @@
 </head>
 <body>
   <!-- Marca de agua -->
-  <div class="watermark">I. E. San José del Citará - Yeiner Quiroz Lobo</div>
+  <div class="watermark">Proyecto de la I. E. San José del Citará - Yeiner Quiroz Lobo</div>
 
- <!-- Escena para Helio -->
-<a-scene mindar-image="imageTargetSrc: ./targets/2He.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-  <a-assets>
-    <img id="helio" src="./images/2He.png" />
-  </a-assets>
-  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-  <a-entity mindar-image-target="targetIndex: 0">
-    <a-plane src="#helio" position="0 0 0" height="2" width="2"></a-plane>
-  </a-entity>
-</a-scene>
-
-<!-- Escena para Hidrógeno -->
-<a-scene mindar-image="imageTargetSrc: ./targets/1H.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-  <a-assets>
-    <img id="hidrogeno" src="./images/1H.png" />
-  </a-assets>
-  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-  <a-entity mindar-image-target="targetIndex: 0">
-    <a-plane src="#hidrogeno" position="0 0 0" height="2" width="2"></a-plane>
-  </a-entity>
-</a-scene>
-
-  <!-- Escena para Litio -->
-  <a-scene mindar-image="imageTargetSrc: ./targets/3Li.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-    <a-assets>
-      <img id="litio" src="./images/3Li.png" />
-    </a-assets>
+  <a-scene vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-plane src="#litio" position="0 0 0" height="2" width="2"></a-plane>
+
+    <!-- 1H -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/1H.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-1H">
+        <a-plane id="plane-1H" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 2He -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/2He.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-2He">
+        <a-plane id="plane-2He" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 3Li -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/3Li.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-3Li">
+        <a-plane id="plane-3Li" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 4Be -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/4Be.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-4Be">
+        <a-plane id="plane-4Be" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 5B -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/5B.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-5B">
+        <a-plane id="plane-5B" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 6C -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/6C.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-6C">
+        <a-plane id="plane-6C" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 7N -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/7N.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-7N">
+        <a-plane id="plane-7N" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 8O -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/8O.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-8O">
+        <a-plane id="plane-8O" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 9F -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/9F.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-9F">
+        <a-plane id="plane-9F" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 10Ne -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/10Ne.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-10Ne">
+        <a-plane id="plane-10Ne" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 11Na -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/11Na.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-11Na">
+        <a-plane id="plane-11Na" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 12Mg -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/12Mg.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-12Mg">
+        <a-plane id="plane-12Mg" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 13Al -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/13Al.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-13Al">
+        <a-plane id="plane-13Al" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 14Si -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/14Si.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-14Si">
+        <a-plane id="plane-14Si" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 15P -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/15P.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-15P">
+        <a-plane id="plane-15P" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 16S -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/16S.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-16S">
+        <a-plane id="plane-16S" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 17Cl -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/17Cl.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-17Cl">
+        <a-plane id="plane-17Cl" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 18Ar -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/18Ar.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-18Ar">
+        <a-plane id="plane-18Ar" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 19K -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/19K.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-19K">
+        <a-plane id="plane-19K" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 20Ca -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/20Ca.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-20Ca">
+        <a-plane id="plane-20Ca" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 21Sc -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/21Sc.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-21Sc">
+        <a-plane id="plane-21Sc" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 22Ti -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/22Ti.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-22Ti">
+        <a-plane id="plane-22Ti" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 23V -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/23V.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-23V">
+        <a-plane id="plane-23V" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 24Cr -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/24Cr.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-24Cr">
+        <a-plane id="plane-24Cr" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 25Mn -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/25Mn.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-25Mn">
+        <a-plane id="plane-25Mn" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 26Fe -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/26Fe.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-26Fe">
+        <a-plane id="plane-26Fe" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 27Co -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/27Co.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-27Co">
+        <a-plane id="plane-27Co" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 28Ni -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/28Ni.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-28Ni">
+        <a-plane id="plane-28Ni" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 29Cu -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/29Cu.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-29Cu">
+        <a-plane id="plane-29Cu" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 30Zn -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/30Zn.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-30Zn">
+        <a-plane id="plane-30Zn" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 31Ga -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/31Ga.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-31Ga">
+        <a-plane id="plane-31Ga" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 32Ge -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/32Ge.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-32Ge">
+        <a-plane id="plane-32Ge" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 33As -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/33As.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-33As">
+        <a-plane id="plane-33As" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 34Se -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/34Se.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-34Se">
+        <a-plane id="plane-34Se" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 35Br -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/35Br.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-35Br">
+        <a-plane id="plane-35Br" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 36Kr -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/36Kr.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-36Kr">
+        <a-plane id="plane-36Kr" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 37Rb -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/37Rb.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-37Rb">
+        <a-plane id="plane-37Rb" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 38Sr -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/38Sr.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-38Sr">
+        <a-plane id="plane-38Sr" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 39Y -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/39Y.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-39Y">
+        <a-plane id="plane-39Y" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 40Zr -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/40Zr.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-40Zr">
+        <a-plane id="plane-40Zr" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 41Nb -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/41Nb.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-41Nb">
+        <a-plane id="plane-41Nb" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 42Mo -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/42Mo.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-42Mo">
+        <a-plane id="plane-42Mo" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 43Tc -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/43Tc.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-43Tc">
+        <a-plane id="plane-43Tc" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 44Ru -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/44Ru.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-44Ru">
+        <a-plane id="plane-44Ru" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 45Rh -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/45Rh.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-45Rh">
+        <a-plane id="plane-45Rh" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 46Pd -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/46Pd.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-46Pd">
+        <a-plane id="plane-46Pd" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 47Ag -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/47Ag.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-47Ag">
+        <a-plane id="plane-47Ag" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 48Cd -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/48Cd.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-48Cd">
+        <a-plane id="plane-48Cd" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 49In -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/49In.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-49In">
+        <a-plane id="plane-49In" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 50Sn -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/50Sn.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-50Sn">
+        <a-plane id="plane-50Sn" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 51Sb -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/51Sb.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-51Sb">
+        <a-plane id="plane-51Sb" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 52Te -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/52Te.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-52Te">
+        <a-plane id="plane-52Te" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 53I -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/53I.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-53I">
+        <a-plane id="plane-53I" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 54Xe -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/54Xe.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-54Xe">
+        <a-plane id="plane-54Xe" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 55Cs -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/55Cs.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-55Cs">
+        <a-plane id="plane-55Cs" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 56Ba -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/56Ba.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-56Ba">
+        <a-plane id="plane-56Ba" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 57La -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/57La.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-57La">
+        <a-plane id="plane-57La" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 58Ce -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/58Ce.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-58Ce">
+        <a-plane id="plane-58Ce" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 59Pr -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/59Pr.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-59Pr">
+        <a-plane id="plane-59Pr" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 60Nd -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/60Nd.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-60Nd">
+        <a-plane id="plane-60Nd" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 61Pm -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/61Pm.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-61Pm">
+        <a-plane id="plane-61Pm" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 62Sm -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/62Sm.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-62Sm">
+        <a-plane id="plane-62Sm" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 63Eu -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/63Eu.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-63Eu">
+        <a-plane id="plane-63Eu" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 64Gd -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/64Gd.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-64Gd">
+        <a-plane id="plane-64Gd" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 65Tb -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/65Tb.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-65Tb">
+        <a-plane id="plane-65Tb" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 66Dy -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/66Dy.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-66Dy">
+        <a-plane id="plane-66Dy" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 67Ho -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/67Ho.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-67Ho">
+        <a-plane id="plane-67Ho" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 68Er -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/68Er.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-68Er">
+        <a-plane id="plane-68Er" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 69Tm -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/69Tm.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-69Tm">
+        <a-plane id="plane-69Tm" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 70Yb -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/70Yb.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-70Yb">
+        <a-plane id="plane-70Yb" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 71Lu -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/71Lu.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-71Lu">
+        <a-plane id="plane-71Lu" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 72Hf -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/72Hf.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-72Hf">
+        <a-plane id="plane-72Hf" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 73Ta -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/73Ta.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-73Ta">
+        <a-plane id="plane-73Ta" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 74W -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/74W.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-74W">
+        <a-plane id="plane-74W" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 75Re -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/75Re.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-75Re">
+        <a-plane id="plane-75Re" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 76Os -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/76Os.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-76Os">
+        <a-plane id="plane-76Os" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 77Ir -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/77Ir.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-77Ir">
+        <a-plane id="plane-77Ir" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 78Pt -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/78Pt.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-78Pt">
+        <a-plane id="plane-78Pt" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 79Au -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/79Au.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-79Au">
+        <a-plane id="plane-79Au" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 80Hg -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/80Hg.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-80Hg">
+        <a-plane id="plane-80Hg" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 81Tl -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/81Tl.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-81Tl">
+        <a-plane id="plane-81Tl" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 82Pb -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/82Pb.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-82Pb">
+        <a-plane id="plane-82Pb" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 83Bi -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/83Bi.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-83Bi">
+        <a-plane id="plane-83Bi" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 84Po -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/84Po.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-84Po">
+        <a-plane id="plane-84Po" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 85At -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/85At.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-85At">
+        <a-plane id="plane-85At" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 86Rn -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/86Rn.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-86Rn">
+        <a-plane id="plane-86Rn" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 87Fr -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/87Fr.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-87Fr">
+        <a-plane id="plane-87Fr" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 88Ra -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/88Ra.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-88Ra">
+        <a-plane id="plane-88Ra" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 89Ac -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/89Ac.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-89Ac">
+        <a-plane id="plane-89Ac" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 90Th -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/90Th.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-90Th">
+        <a-plane id="plane-90Th" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 91Pa -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/91Pa.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-91Pa">
+        <a-plane id="plane-91Pa" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 92U -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/92U.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-92U">
+        <a-plane id="plane-92U" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 93Np -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/93Np.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-93Np">
+        <a-plane id="plane-93Np" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 94Pu -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/94Pu.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-94Pu">
+        <a-plane id="plane-94Pu" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 95Am -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/95Am.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-95Am">
+        <a-plane id="plane-95Am" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 96Cm -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/96Cm.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-96Cm">
+        <a-plane id="plane-96Cm" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 97Bk -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/97Bk.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-97Bk">
+        <a-plane id="plane-97Bk" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 98Cf -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/98Cf.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-98Cf">
+        <a-plane id="plane-98Cf" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 99Es -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/99Es.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-99Es">
+        <a-plane id="plane-99Es" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 100Fm -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/100Fm.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-100Fm">
+        <a-plane id="plane-100Fm" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 101Md -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/101Md.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-101Md">
+        <a-plane id="plane-101Md" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 102No -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/102No.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-102No">
+        <a-plane id="plane-102No" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 103Lr -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/103Lr.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-103Lr">
+        <a-plane id="plane-103Lr" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 104Rf -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/104Rf.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-104Rf">
+        <a-plane id="plane-104Rf" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 105Db -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/105Db.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-105Db">
+        <a-plane id="plane-105Db" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 106Sg -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/106Sg.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-106Sg">
+        <a-plane id="plane-106Sg" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 107Bh -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/107Bh.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-107Bh">
+        <a-plane id="plane-107Bh" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 108Hs -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/108Hs.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-108Hs">
+        <a-plane id="plane-108Hs" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 109Mt -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/109Mt.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-109Mt">
+        <a-plane id="plane-109Mt" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 110Ds -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/110Ds.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-110Ds">
+        <a-plane id="plane-110Ds" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 111Rg -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/111Rg.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-111Rg">
+        <a-plane id="plane-111Rg" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 112Cn -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/112Cn.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-112Cn">
+        <a-plane id="plane-112Cn" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 113Nh -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/113Nh.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-113Nh">
+        <a-plane id="plane-113Nh" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 114Fl -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/114Fl.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-114Fl">
+        <a-plane id="plane-114Fl" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 115Mc -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/115Mc.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-115Mc">
+        <a-plane id="plane-115Mc" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 116Lv -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/116Lv.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-116Lv">
+        <a-plane id="plane-116Lv" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 117Ts -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/117Ts.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-117Ts">
+        <a-plane id="plane-117Ts" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
+    </a-entity>
+
+    <!-- 118Og -->
+    <a-entity mindar-image="imageTargetSrc: ./targets/118Og.mind;">
+      <a-entity mindar-image-target="targetIndex: 0" id="marker-118Og">
+        <a-plane id="plane-118Og" position="0 0 0" height="2" width="2" visible="false"></a-plane>
+      </a-entity>
     </a-entity>
   </a-scene>
-            
-  <!-- Escena para Oxigeno -->
-  <a-scene mindar-image="imageTargetSrc: ./targets/8O.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
-    <a-assets>
-      <img id="oxigeno" src="./images/8O.png" />
-    </a-assets>
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-plane src="#oxigeno" position="0 0 0" height="2" width="2"></a-plane>
-    </a-entity>
-  </a-scene>
+  <script>
+
+    document.querySelector("#marker-1H").addEventListener("targetFound", () => {
+      document.querySelector("#plane-1H").setAttribute("src", "./images/1H.png");
+      document.querySelector("#plane-1H").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-2He").addEventListener("targetFound", () => {
+      document.querySelector("#plane-2He").setAttribute("src", "./images/2He.png");
+      document.querySelector("#plane-2He").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-3Li").addEventListener("targetFound", () => {
+      document.querySelector("#plane-3Li").setAttribute("src", "./images/3Li.png");
+      document.querySelector("#plane-3Li").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-4Be").addEventListener("targetFound", () => {
+      document.querySelector("#plane-4Be").setAttribute("src", "./images/4Be.png");
+      document.querySelector("#plane-4Be").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-5B").addEventListener("targetFound", () => {
+      document.querySelector("#plane-5B").setAttribute("src", "./images/5B.png");
+      document.querySelector("#plane-5B").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-6C").addEventListener("targetFound", () => {
+      document.querySelector("#plane-6C").setAttribute("src", "./images/6C.png");
+      document.querySelector("#plane-6C").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-7N").addEventListener("targetFound", () => {
+      document.querySelector("#plane-7N").setAttribute("src", "./images/7N.png");
+      document.querySelector("#plane-7N").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-8O").addEventListener("targetFound", () => {
+      document.querySelector("#plane-8O").setAttribute("src", "./images/8O.png");
+      document.querySelector("#plane-8O").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-9F").addEventListener("targetFound", () => {
+      document.querySelector("#plane-9F").setAttribute("src", "./images/9F.png");
+      document.querySelector("#plane-9F").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-10Ne").addEventListener("targetFound", () => {
+      document.querySelector("#plane-10Ne").setAttribute("src", "./images/10Ne.png");
+      document.querySelector("#plane-10Ne").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-11Na").addEventListener("targetFound", () => {
+      document.querySelector("#plane-11Na").setAttribute("src", "./images/11Na.png");
+      document.querySelector("#plane-11Na").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-12Mg").addEventListener("targetFound", () => {
+      document.querySelector("#plane-12Mg").setAttribute("src", "./images/12Mg.png");
+      document.querySelector("#plane-12Mg").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-13Al").addEventListener("targetFound", () => {
+      document.querySelector("#plane-13Al").setAttribute("src", "./images/13Al.png");
+      document.querySelector("#plane-13Al").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-14Si").addEventListener("targetFound", () => {
+      document.querySelector("#plane-14Si").setAttribute("src", "./images/14Si.png");
+      document.querySelector("#plane-14Si").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-15P").addEventListener("targetFound", () => {
+      document.querySelector("#plane-15P").setAttribute("src", "./images/15P.png");
+      document.querySelector("#plane-15P").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-16S").addEventListener("targetFound", () => {
+      document.querySelector("#plane-16S").setAttribute("src", "./images/16S.png");
+      document.querySelector("#plane-16S").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-17Cl").addEventListener("targetFound", () => {
+      document.querySelector("#plane-17Cl").setAttribute("src", "./images/17Cl.png");
+      document.querySelector("#plane-17Cl").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-18Ar").addEventListener("targetFound", () => {
+      document.querySelector("#plane-18Ar").setAttribute("src", "./images/18Ar.png");
+      document.querySelector("#plane-18Ar").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-19K").addEventListener("targetFound", () => {
+      document.querySelector("#plane-19K").setAttribute("src", "./images/19K.png");
+      document.querySelector("#plane-19K").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-20Ca").addEventListener("targetFound", () => {
+      document.querySelector("#plane-20Ca").setAttribute("src", "./images/20Ca.png");
+      document.querySelector("#plane-20Ca").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-21Sc").addEventListener("targetFound", () => {
+      document.querySelector("#plane-21Sc").setAttribute("src", "./images/21Sc.png");
+      document.querySelector("#plane-21Sc").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-22Ti").addEventListener("targetFound", () => {
+      document.querySelector("#plane-22Ti").setAttribute("src", "./images/22Ti.png");
+      document.querySelector("#plane-22Ti").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-23V").addEventListener("targetFound", () => {
+      document.querySelector("#plane-23V").setAttribute("src", "./images/23V.png");
+      document.querySelector("#plane-23V").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-24Cr").addEventListener("targetFound", () => {
+      document.querySelector("#plane-24Cr").setAttribute("src", "./images/24Cr.png");
+      document.querySelector("#plane-24Cr").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-25Mn").addEventListener("targetFound", () => {
+      document.querySelector("#plane-25Mn").setAttribute("src", "./images/25Mn.png");
+      document.querySelector("#plane-25Mn").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-26Fe").addEventListener("targetFound", () => {
+      document.querySelector("#plane-26Fe").setAttribute("src", "./images/26Fe.png");
+      document.querySelector("#plane-26Fe").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-27Co").addEventListener("targetFound", () => {
+      document.querySelector("#plane-27Co").setAttribute("src", "./images/27Co.png");
+      document.querySelector("#plane-27Co").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-28Ni").addEventListener("targetFound", () => {
+      document.querySelector("#plane-28Ni").setAttribute("src", "./images/28Ni.png");
+      document.querySelector("#plane-28Ni").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-29Cu").addEventListener("targetFound", () => {
+      document.querySelector("#plane-29Cu").setAttribute("src", "./images/29Cu.png");
+      document.querySelector("#plane-29Cu").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-30Zn").addEventListener("targetFound", () => {
+      document.querySelector("#plane-30Zn").setAttribute("src", "./images/30Zn.png");
+      document.querySelector("#plane-30Zn").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-31Ga").addEventListener("targetFound", () => {
+      document.querySelector("#plane-31Ga").setAttribute("src", "./images/31Ga.png");
+      document.querySelector("#plane-31Ga").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-32Ge").addEventListener("targetFound", () => {
+      document.querySelector("#plane-32Ge").setAttribute("src", "./images/32Ge.png");
+      document.querySelector("#plane-32Ge").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-33As").addEventListener("targetFound", () => {
+      document.querySelector("#plane-33As").setAttribute("src", "./images/33As.png");
+      document.querySelector("#plane-33As").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-34Se").addEventListener("targetFound", () => {
+      document.querySelector("#plane-34Se").setAttribute("src", "./images/34Se.png");
+      document.querySelector("#plane-34Se").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-35Br").addEventListener("targetFound", () => {
+      document.querySelector("#plane-35Br").setAttribute("src", "./images/35Br.png");
+      document.querySelector("#plane-35Br").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-36Kr").addEventListener("targetFound", () => {
+      document.querySelector("#plane-36Kr").setAttribute("src", "./images/36Kr.png");
+      document.querySelector("#plane-36Kr").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-37Rb").addEventListener("targetFound", () => {
+      document.querySelector("#plane-37Rb").setAttribute("src", "./images/37Rb.png");
+      document.querySelector("#plane-37Rb").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-38Sr").addEventListener("targetFound", () => {
+      document.querySelector("#plane-38Sr").setAttribute("src", "./images/38Sr.png");
+      document.querySelector("#plane-38Sr").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-39Y").addEventListener("targetFound", () => {
+      document.querySelector("#plane-39Y").setAttribute("src", "./images/39Y.png");
+      document.querySelector("#plane-39Y").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-40Zr").addEventListener("targetFound", () => {
+      document.querySelector("#plane-40Zr").setAttribute("src", "./images/40Zr.png");
+      document.querySelector("#plane-40Zr").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-41Nb").addEventListener("targetFound", () => {
+      document.querySelector("#plane-41Nb").setAttribute("src", "./images/41Nb.png");
+      document.querySelector("#plane-41Nb").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-42Mo").addEventListener("targetFound", () => {
+      document.querySelector("#plane-42Mo").setAttribute("src", "./images/42Mo.png");
+      document.querySelector("#plane-42Mo").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-43Tc").addEventListener("targetFound", () => {
+      document.querySelector("#plane-43Tc").setAttribute("src", "./images/43Tc.png");
+      document.querySelector("#plane-43Tc").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-44Ru").addEventListener("targetFound", () => {
+      document.querySelector("#plane-44Ru").setAttribute("src", "./images/44Ru.png");
+      document.querySelector("#plane-44Ru").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-45Rh").addEventListener("targetFound", () => {
+      document.querySelector("#plane-45Rh").setAttribute("src", "./images/45Rh.png");
+      document.querySelector("#plane-45Rh").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-46Pd").addEventListener("targetFound", () => {
+      document.querySelector("#plane-46Pd").setAttribute("src", "./images/46Pd.png");
+      document.querySelector("#plane-46Pd").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-47Ag").addEventListener("targetFound", () => {
+      document.querySelector("#plane-47Ag").setAttribute("src", "./images/47Ag.png");
+      document.querySelector("#plane-47Ag").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-48Cd").addEventListener("targetFound", () => {
+      document.querySelector("#plane-48Cd").setAttribute("src", "./images/48Cd.png");
+      document.querySelector("#plane-48Cd").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-49In").addEventListener("targetFound", () => {
+      document.querySelector("#plane-49In").setAttribute("src", "./images/49In.png");
+      document.querySelector("#plane-49In").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-50Sn").addEventListener("targetFound", () => {
+      document.querySelector("#plane-50Sn").setAttribute("src", "./images/50Sn.png");
+      document.querySelector("#plane-50Sn").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-51Sb").addEventListener("targetFound", () => {
+      document.querySelector("#plane-51Sb").setAttribute("src", "./images/51Sb.png");
+      document.querySelector("#plane-51Sb").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-52Te").addEventListener("targetFound", () => {
+      document.querySelector("#plane-52Te").setAttribute("src", "./images/52Te.png");
+      document.querySelector("#plane-52Te").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-53I").addEventListener("targetFound", () => {
+      document.querySelector("#plane-53I").setAttribute("src", "./images/53I.png");
+      document.querySelector("#plane-53I").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-54Xe").addEventListener("targetFound", () => {
+      document.querySelector("#plane-54Xe").setAttribute("src", "./images/54Xe.png");
+      document.querySelector("#plane-54Xe").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-55Cs").addEventListener("targetFound", () => {
+      document.querySelector("#plane-55Cs").setAttribute("src", "./images/55Cs.png");
+      document.querySelector("#plane-55Cs").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-56Ba").addEventListener("targetFound", () => {
+      document.querySelector("#plane-56Ba").setAttribute("src", "./images/56Ba.png");
+      document.querySelector("#plane-56Ba").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-57La").addEventListener("targetFound", () => {
+      document.querySelector("#plane-57La").setAttribute("src", "./images/57La.png");
+      document.querySelector("#plane-57La").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-58Ce").addEventListener("targetFound", () => {
+      document.querySelector("#plane-58Ce").setAttribute("src", "./images/58Ce.png");
+      document.querySelector("#plane-58Ce").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-59Pr").addEventListener("targetFound", () => {
+      document.querySelector("#plane-59Pr").setAttribute("src", "./images/59Pr.png");
+      document.querySelector("#plane-59Pr").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-60Nd").addEventListener("targetFound", () => {
+      document.querySelector("#plane-60Nd").setAttribute("src", "./images/60Nd.png");
+      document.querySelector("#plane-60Nd").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-61Pm").addEventListener("targetFound", () => {
+      document.querySelector("#plane-61Pm").setAttribute("src", "./images/61Pm.png");
+      document.querySelector("#plane-61Pm").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-62Sm").addEventListener("targetFound", () => {
+      document.querySelector("#plane-62Sm").setAttribute("src", "./images/62Sm.png");
+      document.querySelector("#plane-62Sm").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-63Eu").addEventListener("targetFound", () => {
+      document.querySelector("#plane-63Eu").setAttribute("src", "./images/63Eu.png");
+      document.querySelector("#plane-63Eu").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-64Gd").addEventListener("targetFound", () => {
+      document.querySelector("#plane-64Gd").setAttribute("src", "./images/64Gd.png");
+      document.querySelector("#plane-64Gd").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-65Tb").addEventListener("targetFound", () => {
+      document.querySelector("#plane-65Tb").setAttribute("src", "./images/65Tb.png");
+      document.querySelector("#plane-65Tb").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-66Dy").addEventListener("targetFound", () => {
+      document.querySelector("#plane-66Dy").setAttribute("src", "./images/66Dy.png");
+      document.querySelector("#plane-66Dy").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-67Ho").addEventListener("targetFound", () => {
+      document.querySelector("#plane-67Ho").setAttribute("src", "./images/67Ho.png");
+      document.querySelector("#plane-67Ho").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-68Er").addEventListener("targetFound", () => {
+      document.querySelector("#plane-68Er").setAttribute("src", "./images/68Er.png");
+      document.querySelector("#plane-68Er").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-69Tm").addEventListener("targetFound", () => {
+      document.querySelector("#plane-69Tm").setAttribute("src", "./images/69Tm.png");
+      document.querySelector("#plane-69Tm").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-70Yb").addEventListener("targetFound", () => {
+      document.querySelector("#plane-70Yb").setAttribute("src", "./images/70Yb.png");
+      document.querySelector("#plane-70Yb").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-71Lu").addEventListener("targetFound", () => {
+      document.querySelector("#plane-71Lu").setAttribute("src", "./images/71Lu.png");
+      document.querySelector("#plane-71Lu").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-72Hf").addEventListener("targetFound", () => {
+      document.querySelector("#plane-72Hf").setAttribute("src", "./images/72Hf.png");
+      document.querySelector("#plane-72Hf").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-73Ta").addEventListener("targetFound", () => {
+      document.querySelector("#plane-73Ta").setAttribute("src", "./images/73Ta.png");
+      document.querySelector("#plane-73Ta").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-74W").addEventListener("targetFound", () => {
+      document.querySelector("#plane-74W").setAttribute("src", "./images/74W.png");
+      document.querySelector("#plane-74W").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-75Re").addEventListener("targetFound", () => {
+      document.querySelector("#plane-75Re").setAttribute("src", "./images/75Re.png");
+      document.querySelector("#plane-75Re").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-76Os").addEventListener("targetFound", () => {
+      document.querySelector("#plane-76Os").setAttribute("src", "./images/76Os.png");
+      document.querySelector("#plane-76Os").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-77Ir").addEventListener("targetFound", () => {
+      document.querySelector("#plane-77Ir").setAttribute("src", "./images/77Ir.png");
+      document.querySelector("#plane-77Ir").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-78Pt").addEventListener("targetFound", () => {
+      document.querySelector("#plane-78Pt").setAttribute("src", "./images/78Pt.png");
+      document.querySelector("#plane-78Pt").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-79Au").addEventListener("targetFound", () => {
+      document.querySelector("#plane-79Au").setAttribute("src", "./images/79Au.png");
+      document.querySelector("#plane-79Au").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-80Hg").addEventListener("targetFound", () => {
+      document.querySelector("#plane-80Hg").setAttribute("src", "./images/80Hg.png");
+      document.querySelector("#plane-80Hg").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-81Tl").addEventListener("targetFound", () => {
+      document.querySelector("#plane-81Tl").setAttribute("src", "./images/81Tl.png");
+      document.querySelector("#plane-81Tl").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-82Pb").addEventListener("targetFound", () => {
+      document.querySelector("#plane-82Pb").setAttribute("src", "./images/82Pb.png");
+      document.querySelector("#plane-82Pb").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-83Bi").addEventListener("targetFound", () => {
+      document.querySelector("#plane-83Bi").setAttribute("src", "./images/83Bi.png");
+      document.querySelector("#plane-83Bi").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-84Po").addEventListener("targetFound", () => {
+      document.querySelector("#plane-84Po").setAttribute("src", "./images/84Po.png");
+      document.querySelector("#plane-84Po").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-85At").addEventListener("targetFound", () => {
+      document.querySelector("#plane-85At").setAttribute("src", "./images/85At.png");
+      document.querySelector("#plane-85At").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-86Rn").addEventListener("targetFound", () => {
+      document.querySelector("#plane-86Rn").setAttribute("src", "./images/86Rn.png");
+      document.querySelector("#plane-86Rn").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-87Fr").addEventListener("targetFound", () => {
+      document.querySelector("#plane-87Fr").setAttribute("src", "./images/87Fr.png");
+      document.querySelector("#plane-87Fr").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-88Ra").addEventListener("targetFound", () => {
+      document.querySelector("#plane-88Ra").setAttribute("src", "./images/88Ra.png");
+      document.querySelector("#plane-88Ra").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-89Ac").addEventListener("targetFound", () => {
+      document.querySelector("#plane-89Ac").setAttribute("src", "./images/89Ac.png");
+      document.querySelector("#plane-89Ac").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-90Th").addEventListener("targetFound", () => {
+      document.querySelector("#plane-90Th").setAttribute("src", "./images/90Th.png");
+      document.querySelector("#plane-90Th").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-91Pa").addEventListener("targetFound", () => {
+      document.querySelector("#plane-91Pa").setAttribute("src", "./images/91Pa.png");
+      document.querySelector("#plane-91Pa").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-92U").addEventListener("targetFound", () => {
+      document.querySelector("#plane-92U").setAttribute("src", "./images/92U.png");
+      document.querySelector("#plane-92U").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-93Np").addEventListener("targetFound", () => {
+      document.querySelector("#plane-93Np").setAttribute("src", "./images/93Np.png");
+      document.querySelector("#plane-93Np").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-94Pu").addEventListener("targetFound", () => {
+      document.querySelector("#plane-94Pu").setAttribute("src", "./images/94Pu.png");
+      document.querySelector("#plane-94Pu").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-95Am").addEventListener("targetFound", () => {
+      document.querySelector("#plane-95Am").setAttribute("src", "./images/95Am.png");
+      document.querySelector("#plane-95Am").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-96Cm").addEventListener("targetFound", () => {
+      document.querySelector("#plane-96Cm").setAttribute("src", "./images/96Cm.png");
+      document.querySelector("#plane-96Cm").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-97Bk").addEventListener("targetFound", () => {
+      document.querySelector("#plane-97Bk").setAttribute("src", "./images/97Bk.png");
+      document.querySelector("#plane-97Bk").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-98Cf").addEventListener("targetFound", () => {
+      document.querySelector("#plane-98Cf").setAttribute("src", "./images/98Cf.png");
+      document.querySelector("#plane-98Cf").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-99Es").addEventListener("targetFound", () => {
+      document.querySelector("#plane-99Es").setAttribute("src", "./images/99Es.png");
+      document.querySelector("#plane-99Es").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-100Fm").addEventListener("targetFound", () => {
+      document.querySelector("#plane-100Fm").setAttribute("src", "./images/100Fm.png");
+      document.querySelector("#plane-100Fm").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-101Md").addEventListener("targetFound", () => {
+      document.querySelector("#plane-101Md").setAttribute("src", "./images/101Md.png");
+      document.querySelector("#plane-101Md").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-102No").addEventListener("targetFound", () => {
+      document.querySelector("#plane-102No").setAttribute("src", "./images/102No.png");
+      document.querySelector("#plane-102No").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-103Lr").addEventListener("targetFound", () => {
+      document.querySelector("#plane-103Lr").setAttribute("src", "./images/103Lr.png");
+      document.querySelector("#plane-103Lr").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-104Rf").addEventListener("targetFound", () => {
+      document.querySelector("#plane-104Rf").setAttribute("src", "./images/104Rf.png");
+      document.querySelector("#plane-104Rf").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-105Db").addEventListener("targetFound", () => {
+      document.querySelector("#plane-105Db").setAttribute("src", "./images/105Db.png");
+      document.querySelector("#plane-105Db").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-106Sg").addEventListener("targetFound", () => {
+      document.querySelector("#plane-106Sg").setAttribute("src", "./images/106Sg.png");
+      document.querySelector("#plane-106Sg").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-107Bh").addEventListener("targetFound", () => {
+      document.querySelector("#plane-107Bh").setAttribute("src", "./images/107Bh.png");
+      document.querySelector("#plane-107Bh").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-108Hs").addEventListener("targetFound", () => {
+      document.querySelector("#plane-108Hs").setAttribute("src", "./images/108Hs.png");
+      document.querySelector("#plane-108Hs").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-109Mt").addEventListener("targetFound", () => {
+      document.querySelector("#plane-109Mt").setAttribute("src", "./images/109Mt.png");
+      document.querySelector("#plane-109Mt").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-110Ds").addEventListener("targetFound", () => {
+      document.querySelector("#plane-110Ds").setAttribute("src", "./images/110Ds.png");
+      document.querySelector("#plane-110Ds").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-111Rg").addEventListener("targetFound", () => {
+      document.querySelector("#plane-111Rg").setAttribute("src", "./images/111Rg.png");
+      document.querySelector("#plane-111Rg").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-112Cn").addEventListener("targetFound", () => {
+      document.querySelector("#plane-112Cn").setAttribute("src", "./images/112Cn.png");
+      document.querySelector("#plane-112Cn").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-113Nh").addEventListener("targetFound", () => {
+      document.querySelector("#plane-113Nh").setAttribute("src", "./images/113Nh.png");
+      document.querySelector("#plane-113Nh").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-114Fl").addEventListener("targetFound", () => {
+      document.querySelector("#plane-114Fl").setAttribute("src", "./images/114Fl.png");
+      document.querySelector("#plane-114Fl").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-115Mc").addEventListener("targetFound", () => {
+      document.querySelector("#plane-115Mc").setAttribute("src", "./images/115Mc.png");
+      document.querySelector("#plane-115Mc").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-116Lv").addEventListener("targetFound", () => {
+      document.querySelector("#plane-116Lv").setAttribute("src", "./images/116Lv.png");
+      document.querySelector("#plane-116Lv").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-117Ts").addEventListener("targetFound", () => {
+      document.querySelector("#plane-117Ts").setAttribute("src", "./images/117Ts.png");
+      document.querySelector("#plane-117Ts").setAttribute("visible", "true");
+    });
+
+    document.querySelector("#marker-118Og").addEventListener("targetFound", () => {
+      document.querySelector("#plane-118Og").setAttribute("src", "./images/118Og.png");
+      document.querySelector("#plane-118Og").setAttribute("visible", "true");
+    });
+  </script>
+</body>
+</html>

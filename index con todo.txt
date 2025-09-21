@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba AR - Hidrógeno</title>
+
+  <!-- A-Frame primero -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <!-- Luego MindAR -->
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
+
+  <style>
+    .watermark {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 10px;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Marca de agua -->
+  <div class="watermark">I. E. San José del Citará - Yeiner Quiroz Lobo</div>
+
+ <!-- Escena para Helio -->
+<a-scene mindar-image="imageTargetSrc: ./targets/2He.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+  <a-assets>
+    <img id="helio" src="./images/2He.png" />
+  </a-assets>
+  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  <a-entity mindar-image-target="targetIndex: 0">
+    <a-plane src="#helio" position="0 0 0" height="2" width="2"></a-plane>
+  </a-entity>
+</a-scene>
+
+<!-- Escena para Hidrógeno -->
+<a-scene mindar-image="imageTargetSrc: ./targets/1H.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+  <a-assets>
+    <img id="hidrogeno" src="./images/1H.png" />
+  </a-assets>
+  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  <a-entity mindar-image-target="targetIndex: 0">
+    <a-plane src="#hidrogeno" position="0 0 0" height="2" width="2"></a-plane>
+  </a-entity>
+</a-scene>
+
+
+  <!-- Escena para Litio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/3Li.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="litio" src="./images/3Li.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#litio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Berilio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/4Be.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="berilio" src="./images/4Be.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#berilio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Boro -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/5B.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="boro" src="./images/5B.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#boro" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Carbono -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/6C.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="carbono" src="./images/6C.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#carbono" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Nitrogeno -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/7N.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="nitrogeno" src="./images/7N.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#nitrogeno" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Oxigeno -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/8O.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="oxigeno" src="./images/8O.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#oxigeno" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Fluor -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/9F.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="fluor" src="./images/9F.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#fluor" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Neon -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/10Ne.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="neon" src="./images/10Ne.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#neon" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Sodio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/11Na.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="sodio" src="./images/11Na.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#sodio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Magnesio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/12Mg.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="magnesio" src="./images/12Mg.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#magnesio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Aluminio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/13Al.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="aluminio" src="./images/13Al.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#aluminio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Silicio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/14Si.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="silicio" src="./images/14Si.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#silicio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Fosforo -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/15P.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="fosforo" src="./images/15P.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#fosforo" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Azufre -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/16S.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="azufre" src="./images/16S.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#azufre" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Cloro -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/17Cl.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="cloro" src="./images/17Cl.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#cloro" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Argon -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/18Ar.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="argon" src="./images/18Ar.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#argon" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Potasio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/19K.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="potasio" src="./images/19K.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#potasio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Calcio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/20Ca.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="calcio" src="./images/20Ca.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#calcio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Escandio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/21Sc.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="escandio" src="./images/21Sc.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#escandio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Titanio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/22Ti.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="titanio" src="./images/22Ti.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#titanio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Vanadio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/23V.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="vanadio" src="./images/23V.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#vanadio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Cromo -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/24Cr.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="cromo" src="./images/24Cr.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#cromo" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Manganeso -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/25Mn.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="manganeso" src="./images/25Mn.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#manganeso" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Hierro -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/26Fe.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="hierro" src="./images/26Fe.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hierro" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Cobalto -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/27Co.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="cobalto" src="./images/27Co.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#cobalto" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Niquel -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/28Ni.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="niquel" src="./images/28Ni.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#niquel" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Cobre -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/29Cu.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="cobre" src="./images/29Cu.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#cobre" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Zinc -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/30Zn.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="zinc" src="./images/30Zn.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#zinc" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Galio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/31Ga.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="galio" src="./images/31Ga.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#galio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Germanio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/32Ge.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="germanio" src="./images/32Ge.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#germanio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Arsenico -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/33As.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="arsenico" src="./images/33As.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#arsenico" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Selenio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/34Se.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="selenio" src="./images/34Se.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#selenio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Bromo -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/35Br.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="bromo" src="./images/35Br.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#bromo" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Kripton -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/36Kr.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="kripton" src="./images/36Kr.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#kripton" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Rubidio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/37Rb.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="rubidio" src="./images/37Rb.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#rubidio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Estroncio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/38Sr.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="estroncio" src="./images/38Sr.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#estroncio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Itrio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/39Y.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="itrio" src="./images/39Y.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#itrio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Circonio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/40Zr.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="circonio" src="./images/40Zr.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#circonio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Niobio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/41Nb.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="niobio" src="./images/41Nb.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#niobio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Molibdeno -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/42Mo.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="molibdeno" src="./images/42Mo.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#molibdeno" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Tecnecio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/43Tc.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="tecnecio" src="./images/43Tc.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#tecnecio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Rutenio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/44Ru.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="rutenio" src="./images/44Ru.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#rutenio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Rodio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/45Rh.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="rodio" src="./images/45Rh.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#rodio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Paladio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/46Pd.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="paladio" src="./images/46Pd.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#paladio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Plata -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/47Ag.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="plata" src="./images/47Ag.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#plata" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Cadmio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/48Cd.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="cadmio" src="./images/48Cd.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#cadmio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Indio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/49In.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="indio" src="./images/49In.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#indio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Estaño -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/50Sn.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="estaño" src="./images/50Sn.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#estaño" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Antimonio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/51Sb.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="antimonio" src="./images/51Sb.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#antimonio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Telurio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/52Te.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="telurio" src="./images/52Te.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#telurio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Yodo -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/53I.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="yodo" src="./images/53I.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#yodo" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Xenon -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/54Xe.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="xenon" src="./images/54Xe.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#xenon" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Cesio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/55Cs.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="cesio" src="./images/55Cs.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#cesio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Bario -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/56Ba.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="bario" src="./images/56Ba.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#bario" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Lantano -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/57La.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="lantano" src="./images/57La.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#lantano" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Cerio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/58Ce.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="cerio" src="./images/58Ce.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#cerio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Praseodimio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/59Pr.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="praseodimio" src="./images/59Pr.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#praseodimio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Neodimio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/60Nd.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="neodimio" src="./images/60Nd.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#neodimio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Prometio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/61Pm.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="prometio" src="./images/61Pm.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#prometio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Samario -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/62Sm.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="samario" src="./images/62Sm.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#samario" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Europio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/63Eu.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="europio" src="./images/63Eu.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#europio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Gadolinio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/64Gd.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="gadolinio" src="./images/64Gd.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#gadolinio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Terbio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/65Tb.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="terbio" src="./images/65Tb.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#terbio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Disprosio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/66Dy.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="disprosio" src="./images/66Dy.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#disprosio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Holmio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/67Ho.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="holmio" src="./images/67Ho.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#holmio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Erbio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/68Er.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="erbio" src="./images/68Er.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#erbio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Tulio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/69Tm.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="tulio" src="./images/69Tm.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#tulio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Iterbio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/70Yb.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="iterbio" src="./images/70Yb.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#iterbio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Lutecio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/71Lu.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="lutecio" src="./images/71Lu.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#lutecio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Hafnio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/72Hf.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="hafnio" src="./images/72Hf.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hafnio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Tantalio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/73Ta.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="tantalio" src="./images/73Ta.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#tantalio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Wolframio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/74W.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="wolframio" src="./images/74W.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#wolframio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Renio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/75Re.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="renio" src="./images/75Re.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#renio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Osmio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/76Os.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="osmio" src="./images/76Os.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#osmio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Iridio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/77Ir.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="iridio" src="./images/77Ir.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#iridio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Platino -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/78Pt.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="platino" src="./images/78Pt.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#platino" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Oro -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/79Au.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="oro" src="./images/79Au.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#oro" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Mercurio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/80Hg.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="mercurio" src="./images/80Hg.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#mercurio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Talio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/81Tl.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="talio" src="./images/81Tl.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#talio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Plomo -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/82Pb.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="plomo" src="./images/82Pb.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#plomo" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Bismuto -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/83Bi.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="bismuto" src="./images/83Bi.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#bismuto" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Polonio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/84Po.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="polonio" src="./images/84Po.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#polonio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Astato -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/85At.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="astato" src="./images/85At.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#astato" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Radon -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/86Rn.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="radon" src="./images/86Rn.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#radon" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Francio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/87Fr.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="francio" src="./images/87Fr.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#francio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Radio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/88Ra.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="radio" src="./images/88Ra.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#radio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Actinio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/89Ac.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="actinio" src="./images/89Ac.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#actinio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Torio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/90Th.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="torio" src="./images/90Th.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#torio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Protactinio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/91Pa.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="protactinio" src="./images/91Pa.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#protactinio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Uranio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/92U.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="uranio" src="./images/92U.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#uranio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Neptunio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/93Np.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="neptunio" src="./images/93Np.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#neptunio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Plutonio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/94Pu.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="plutonio" src="./images/94Pu.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#plutonio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Americio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/95Am.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="americio" src="./images/95Am.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#americio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Curio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/96Cm.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="curio" src="./images/96Cm.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#curio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Berkelio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/97Bk.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="berkelio" src="./images/97Bk.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#berkelio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Californio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/98Cf.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="californio" src="./images/98Cf.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#californio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Einsteinio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/99Es.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="einsteinio" src="./images/99Es.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#einsteinio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Fermio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/100Fm.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="fermio" src="./images/100Fm.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#fermio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Mendelevio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/101Md.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="mendelevio" src="./images/101Md.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#mendelevio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Nobelio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/102No.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="nobelio" src="./images/102No.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#nobelio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Lawrencio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/103Lr.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="lawrencio" src="./images/103Lr.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#lawrencio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Rutherfordio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/104Rf.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="rutherfordio" src="./images/104Rf.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#rutherfordio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Dubnio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/105Db.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="dubnio" src="./images/105Db.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#dubnio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Seaborgio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/106Sg.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="seaborgio" src="./images/106Sg.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#seaborgio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Bohrio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/107Bh.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="bohrio" src="./images/107Bh.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#bohrio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Hassio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/108Hs.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="hassio" src="./images/108Hs.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#hassio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Meitnerio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/109Mt.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="meitnerio" src="./images/109Mt.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#meitnerio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Darmstatio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/110Ds.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="darmstatio" src="./images/110Ds.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#darmstatio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Roentgenio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/111Rg.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="roentgenio" src="./images/111Rg.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#roentgenio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Copernicio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/112Cn.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="copernicio" src="./images/112Cn.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#copernicio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Nihonio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/113Nh.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="nihonio" src="./images/113Nh.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#nihonio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Flerovio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/114Fl.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="flerovio" src="./images/114Fl.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#flerovio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Moscovio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/115Mc.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="moscovio" src="./images/115Mc.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#moscovio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Livermorio -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/116Lv.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="livermorio" src="./images/116Lv.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#livermorio" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Tenesino -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/117Ts.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="tenesino" src="./images/117Ts.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#tenesino" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
+    
+  <!-- Escena para Oganesson -->
+  <a-scene mindar-image="imageTargetSrc: ./targets/118Og.mind;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-assets>
+      <img id="oganesson" src="./images/118Og.png" />
+    </a-assets>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-plane src="#oganesson" position="0 0 0" height="2" width="2"></a-plane>
+    </a-entity>
+  </a-scene>
