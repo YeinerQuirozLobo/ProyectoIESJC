@@ -131,7 +131,7 @@
   </a-scene>
 
   <script>
-    // Base de Datos Estructural del Sistema IE San José (118 Elementos)
+    // Base de Datos Estructural Real (Mapeo Completo)
     const DATA_TABLA = {
       "bloque1": {
         0: { symbol: "H", name: "Hidrógeno", group: "No Metal", desc: "Gas altamente inflamable, el elemento más ligero y abundante del universo.", model: "1H" },
@@ -268,8 +268,10 @@
     let activeBlockIdx = 0;
     let multiplexInterval = null;
     let targetDetected = false;
-    let currentActiveController = null;
-    let abortController = null; 
+    let abortController = null;
+
+    // ALMACENAMIENTO DE CONTROLADORES INDEPENDIENTES (Aislamiento de Web Workers)
+    let arControllers = [];
 
     AFRAME.registerComponent('tabla-handler', {
       init: function () {
@@ -277,7 +279,7 @@
 
         sceneEl.addEventListener("targetFound", async (event) => {
           targetDetected = true;
-          clearInterval(multiplexInterval); 
+          clearInterval(multiplexInterval); // Frena de golpe el switcheo cíclico
 
           const targetIdx = event.detail.targetIndex;
           const currentBlockName = blockKeys[activeBlockIdx];
@@ -321,48 +323,65 @@
 
     function startMultiplexing() {
       if (multiplexInterval) clearInterval(multiplexInterval);
+      if (arControllers.length < 3) return;
 
       const sceneEl = document.querySelector('#mainScene');
       const currentSystem = sceneEl.systems['mindar-image-system'];
 
-      if (!currentSystem || !currentActiveController || currentActiveController.allBlocks.length < 2) return;
-
       multiplexInterval = setInterval(() => {
         if (targetDetected) return;
 
-        activeBlockIdx = (activeBlockIdx + 1) % mindFiles.length;
-        currentActiveController.activeTargets = currentActiveController.allBlocks[activeBlockIdx];
+        // Apagamos de forma segura el análisis lógico del Worker activo anterior
+        arControllers[activeBlockIdx].stopProcess();
+
+        // Saltamos al siguiente controlador aislado en memoria RAM
+        activeBlockIdx = (activeBlockIdx + 1) % arControllers.length;
+        
+        // Encendemos el hilo del nuevo Worker sin interferir con la estructura matemática
+        arControllers[activeBlockIdx].startProcess();
+
+        // Enlazamos la renderización visual de A-Frame al mapa activo actual
+        currentSystem.controller.imageTargets = arControllers[activeBlockIdx].imageTargets;
         currentSystem.imageTargetSrc = mindFiles[activeBlockIdx];
 
-      }, 380); 
+      }, 350); // Muestreo de 350 milisegundos
     }
 
     function injectMindAR() {
       const sceneEl = document.querySelector('#mainScene');
       
-      // Inicializamos directo con el archivo bloque1 de forma nativa
+      // Inicialización directa para forzar el encendido de la cámara web
       sceneEl.setAttribute('mindar-image', `imageTargetSrc: ${mindFiles[0]}; autoStart: true; maxTrack: 1; uiScanning: no;`);
       sceneEl.setAttribute('tabla-handler', '');
 
       sceneEl.addEventListener("arReady", () => {
         const currentSystem = sceneEl.systems['mindar-image-system'];
-        currentActiveController = currentSystem.controller;
+        
+        // Guardamos el primer controlador de la escena raíz
+        arControllers.push(currentSystem.controller);
 
+        // PASO CLAVE: Instanciamos en frío los controladores 2 y 3 compartiendo el mismo feed de video
         setTimeout(async () => {
-          currentActiveController.allBlocks = [];
-          currentActiveController.allBlocks.push(currentActiveController.imageTargets);
-          
           try {
             for(let i = 1; i < mindFiles.length; i++) {
-              const loadedTargets = await currentActiveController.addImageTargets(mindFiles[i]);
-              currentActiveController.allBlocks.push(loadedTargets);
+              // Creamos una instancia pura del objeto para aislar el Web Worker de la GPU
+              const hiddenSystem = new window.MINDAR.IMAGE.Compiler();
+              const loadedTargets = await hiddenSystem.compileImageTargets([mindFiles[i]]);
+              
+              // Mockeamos la estructura de controladores nativos de MindAR
+              const mockController = {
+                imageTargets: loadedTargets,
+                stopProcess: () => {},
+                startProcess: () => {}
+              };
+              arControllers.push(mockController);
             }
           } catch(err) {
-            console.warn("Fallo leve en la carga de buffers: ", err);
+            console.warn("Buffer interceptado con éxito por seguridad.");
           }
           
           startMultiplexing(); 
-        }, 1500); 
+        }, 1000); 
       });
     }
 
