@@ -36,7 +36,7 @@
       z-index: 999;
     }
 
-    /* Interfaz de Usuario: Tarjeta Flotante Inferior (Bottom Sheet) */
+    /* Interfaz de Usuario: Tarjeta Flotante Inferior */
     .element-card {
       position: fixed;
       bottom: -250px;
@@ -103,11 +103,27 @@
       padding-top: 12px;
       line-height: 1.6;
     }
+
+    .ar-loader {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      font-size: 11px;
+      color: #3b82f6;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      z-index: 999;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      display: none;
+    }
   </style>
 </head>
 <body>
 
   <div class="watermark">Proyecto de la I. E. San José del Citará</div>
+  <div id="loaderStatus" class="ar-loader">Optimización en segundo plano...</div>
 
   <div id="infoCard" class="element-card">
     <div class="card-header">
@@ -131,7 +147,7 @@
   </a-scene>
 
   <script>
-    // Base de Datos Real y Completa con los 118 Elementos Químicos del Sistema IE San José
+    // Base de Datos Estructural del Sistema IE San José
     const DATA_TABLA = {
       "bloque1": {
         0: { symbol: "H", name: "Hidrógeno", group: "No Metal", desc: "Gas altamente inflamable, el elemento más ligero y abundante del universo.", model: "1H" },
@@ -338,11 +354,10 @@
       }, 380); 
     }
 
-    // ARRANQUE INDESTRUCTIBLE CORREGIDO (Sin bloqueos asíncronos en el hilo principal)
+    // ARRANQUE INDESTRUCTIBLE CON NULL-CHECKS (Fijación total de errores de interfaz)
     function injectMindAR() {
       const sceneEl = document.querySelector('#mainScene');
       
-      // Inicializamos directo con el archivo bloque1 para que la cámara web encienda en menos de un segundo
       sceneEl.setAttribute('mindar-image', `imageTargetSrc: ${mindFiles[0]}; autoStart: true; maxTrack: 1; uiScanning: no;`);
       sceneEl.setAttribute('tabla-handler', '');
 
@@ -350,24 +365,25 @@
         const currentSystem = sceneEl.systems['mindar-image-system'];
         currentActiveController = currentSystem.controller;
 
-        // Una vez que el feed de la cámara está estable y pintado en pantalla, procesamos la caché oculta
         setTimeout(async () => {
-          loaderStatus.style.display = "block";
+          // El Null-Check evita que la app se rompa si la etiqueta del loader cambia o no se encuentra
+          if (loaderStatus) loaderStatus.style.display = "block";
           
           currentActiveController.allBlocks = [];
-          
-          // El bloque 1 ya está en memoria GPU, lo asignamos de inmediato
           currentActiveController.allBlocks.push(currentActiveController.imageTargets);
           
-          // Cargamos en background diferido los descriptores lógicos de los bloques 2 y 3
-          for(let i = 1; i < mindFiles.length; i++) {
-            const loadedTargets = await currentActiveController.addImageTargets(mindFiles[i]);
-            currentActiveController.allBlocks.push(loadedTargets);
+          try {
+            for(let i = 1; i < mindFiles.length; i++) {
+              const loadedTargets = await currentActiveController.addImageTargets(mindFiles[i]);
+              currentActiveController.allBlocks.push(loadedTargets);
+            }
+          } catch(err) {
+            console.error("Error en pre-carga de bloques: ", err);
           }
           
-          loaderStatus.style.display = "none";
-          startMultiplexing(); // Encendemos el multiplexado continuo continuo
-        }, 1500); // 1.5 segundos de retraso de cortesía: el secreto para evitar la pantalla negra
+          if (loaderStatus) loaderStatus.style.display = "none";
+          startMultiplexing(); 
+        }, 1500); 
       });
     }
 
