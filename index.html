@@ -1,145 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla Periódica RA Continuo - I.E. San José del Citará</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=no"
-  >
-
-  <title>Tabla Periódica AR</title>
-
-  <!-- AFRAME -->
+  <!-- A-Frame y MindAR -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
 
-  <!-- MINDAR -->
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: #000;
+    }
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="./styles/style.css">
+    /* Marca de agua de la institución */
+    .watermark {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(135deg, rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.7));
+      padding: 8px 14px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1000;
+    }
 
-  <!-- JS -->
-  <script defer src="./scripts/app.js"></script>
+    /* Interfaz de Usuario Avanzada: Glassmorphism Bottom Sheet */
+    .element-card {
+      position: fixed;
+      bottom: -220px; /* Oculto inicialmente */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+      backdrop-filter: blur(12px);
+      box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .element-card.active {
+      bottom: 25px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .element-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #2563eb;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 22px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .element-title {
+      margin-left: 15px;
+    }
+
+    .element-title h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #111827;
+    }
+
+    .element-title p {
+      margin: 0;
+      font-size: 13px;
+      color: #4b5563;
+      font-weight: 500;
+    }
+
+    .element-data {
+      font-size: 14px;
+      color: #374151;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      padding-top: 12px;
+      line-height: 1.5;
+    }
+
+    #sceneContainer {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- LOADER -->
+  <div class="watermark">I. E. San José del Citará</div>
 
-  <div id="loadingScreen">
-
-    <div class="loaderBox">
-
-      <img src="./assets/logo.png" class="logo">
-
-      <h1>Tabla Periódica AR</h1>
-
-      <p>Cargando experiencia...</p>
-
-      <div class="loadingBar">
-        <div class="loadingProgress"></div>
+  <!-- Panel de Información UI -->
+  <div id="infoCard" class="element-card">
+    <div class="card-header">
+      <div id="elemBadge" class="element-badge">-</div>
+      <div class="element-title">
+        <h2 id="elemName">-</h2>
+        <p id="elemCategory">-</p>
       </div>
-
     </div>
-
+    <div class="element-data">
+      <span id="elemDesc">-</span>
+    </div>
   </div>
 
-  <!-- PANEL -->
+  <!-- Contenedor único donde corre la Realidad Aumentada libre de menús -->
+  <div id="sceneContainer"></div>
 
-  <div id="infoPanel">
+  <script>
+    // 1. Estructura de Datos Unificada indexada por Bloques de archivos .mind
+    const periodicBlocks = [
+      {
+        id: "bloque1",
+        file: "./targets/bloque1.mind",
+        elements: {
+          0: { symbol: "H", name: "Hidrógeno", group: "No Metal", desc: "Gas altamente inflamable, el elemento más ligero y abundante del universo.", model: "./models/1H.glb" },
+          1: { symbol: "He", name: "Helio", group: "Gas Noble", desc: "Gas inerte, incoloro y el segundo elemento más ligero de la tabla.", model: "./models/2He.glb" }
+          // Completar índices del 0 al 39 para el bloque 1
+        }
+      },
+      {
+        id: "bloque2",
+        file: "./targets/bloque2.mind",
+        elements: {
+          0: { symbol: "Nb", name: "Niobio", group: "Metal de Transición", desc: "Metal de transición dúctil utilizado principalmente en superaleaciones aeroespaciales.", model: "./models/41Nb.glb" },
+          1: { symbol: "Mo", name: "Molibdeno", group: "Metal de Transición", desc: "Posee uno de los puntos de fusión más altos de los elementos puros.", model: "./models/42Mo.glb" }
+          // Completar índices del 0 al 39 para el bloque 2 (Vuelve a iniciar desde 0)
+        }
+      },
+      {
+        id: "bloque3",
+        file: "./targets/bloque3.mind",
+        elements: {
+          0: { symbol: "Tl", name: "Talio", group: "Metal del Bloque p", desc: "Metal blando y maleable que se oxida rápidamente al contacto con el aire.", model: "./models/81Tl.glb" },
+          1: { symbol: "Pb", name: "Plomo", group: "Metal Pesado", desc: "Elemento denso y muy maleable con alta resistencia a la corrosión.", model: "./models/82Pb.glb" }
+          // Completar índices del 0 al 37 para el bloque 3 (Vuelve a iniciar desde 0)
+        }
+      }
+    ];
 
-    <h2 id="elementName">
-      Tabla Periódica
-    </h2>
+    let currentBlockIndex = 0;
+    let scannerInterval = null;
+    let isElementTracking = false;
+    const infoCard = document.querySelector('#infoCard');
 
-    <p id="elementInfo">
-      Escanea un elemento.
-    </p>
+    // 2. Componente Controlador de Eventos de A-Frame
+    AFRAME.registerComponent('ar-tracker', {
+      init: function () {
+        this.el.addEventListener("targetFound", (event) => {
+          // Marcador Encontrado: Congelamos el ciclo de alternancia inmediatamente para ahorrar CPU
+          isElementTracking = true;
+          clearInterval(scannerInterval);
 
-  </div>
+          const targetIdx = event.detail.targetIndex;
+          const currentBlock = periodicBlocks[currentBlockIndex];
+          const elementData = currentBlock.elements[targetIdx];
 
-  <!-- SELECTOR -->
+          if (elementData) {
+            // Limpieza de memoria instantánea eliminando modelos previos
+            const modelContainer = document.querySelector('#modelContainer');
+            if (modelContainer) modelContainer.innerHTML = "";
 
-  <select id="blockSelector">
+            // Inyección dinâmica del archivo .GLB bajo demanda
+            const glbElement = document.createElement('a-gltf-model');
+            glbElement.setAttribute('src', elementData.model);
+            glbElement.setAttribute('position', '0 0 0');
+            glbElement.setAttribute('scale', '0.6 0.6 0.6'); 
+            // Animación de rotación continua y suave para la vista 3D
+            glbElement.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear');
+            glbElement.setAttribute('mindar-image-target', `targetIndex: ${targetIdx}`);
+            
+            if (modelContainer) modelContainer.appendChild(glbElement);
 
-    <option value="bloque1">
-      Bloque 1
-    </option>
+            // Renderizar la información del elemento detectado en la UI inferior
+            document.querySelector('#elemBadge').innerText = elementData.symbol;
+            document.querySelector('#elemName').innerText = elementData.name;
+            document.querySelector('#elemCategory').innerText = elementData.group;
+            document.querySelector('#elemDesc').innerText = elementData.desc;
+            infoCard.classList.add('active');
+          }
+        });
 
-    <option value="bloque2">
-      Bloque 2
-    </option>
+        this.el.addEventListener("targetLost", () => {
+          // Marcador Perdido: Ocultar UI, limpiar memoria y reactivar el motor secuencial
+          infoCard.classList.remove('active');
+          isElementTracking = false;
+          startDynamicScanner();
+        });
+      }
+    });
 
-    <option value="bloque3">
-      Bloque 3
-    </option>
+    // 3. Motor Secuencial de Escaneo en Segundo Plano
+    function loadScene(block) {
+      const container = document.querySelector('#sceneContainer');
+      
+      // Matar la estructura interna de la escena anterior y liberar hilos de MindAR
+      container.innerHTML = "";
 
-  </select>
+      const sceneHTML = `
+        <a-scene mindar-image="imageTargetSrc: ${block.file}; autoStart: true; maxTrack: 1; warmupTolerance: 1; missTolerance: 2;" 
+                 vr-mode-ui="enabled: false" 
+                 device-orientation-permission-ui="enabled: false"
+                 ar-tracker>
+          <a-assets></a-assets>
+          <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+          <a-entity id="modelContainer"></a-entity>
+        </a-scene>
+      `;
+      container.innerHTML = sceneHTML;
+    }
 
-  <!-- FULLSCREEN -->
+    function startDynamicScanner() {
+      if (scannerInterval) clearInterval(scannerInterval);
 
-  <button id="fullscreenBtn">
-    ⛶
-  </button>
+      // Cada 250ms el script alterna el archivo de marcadores si no hay ningún átomo enfocado
+      scannerInterval = setInterval(() => {
+        if (!isElementTracking) {
+          currentBlockIndex = (currentBlockIndex + 1) % periodicBlocks.length;
+          loadScene(periodicBlocks[currentBlockIndex]);
+        }
+      }, 250); 
+    }
 
-  <!-- WATERMARK -->
-
-  <div class="watermark">
-    Proyecto I.E. San José del Citará
-  </div>
-
-  <!-- ESCENA -->
-
-  <a-scene
-
-    id="scene"
-
-    color-space="sRGB"
-
-    renderer="
-      colorManagement: true;
-      physicallyCorrectLights
-    "
-
-    vr-mode-ui="enabled: false"
-
-    device-orientation-permission-ui="enabled: false"
-
-    mindar-image="
-      imageTargetSrc: ./targets/bloque1.mind;
-      autoStart: true;
-      uiScanning: true;
-      uiLoading: true;
-    "
-  >
-
-    <!-- CÁMARA -->
-
-    <a-camera
-      position="0 0 0"
-      look-controls="enabled: false"
-    ></a-camera>
-
-    <!-- CONTENEDOR -->
-
-    <a-entity id="targetsContainer"></a-entity>
-
-    <!-- LUCES -->
-
-    <a-light
-      type="ambient"
-      intensity="1.2"
-    ></a-light>
-
-    <a-light
-      type="directional"
-      intensity="1"
-      position="0 2 1"
-    ></a-light>
-
-  </a-scene>
-
+    // Inicializar la aplicación de manera automática al arrancar la ventana
+    window.addEventListener('DOMContentLoaded', () => {
+      loadScene(periodicBlocks[0]);
+      startDynamicScanner();
+    });
+  </script>
 </body>
 </html>
