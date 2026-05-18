@@ -1,55 +1,63 @@
+<!-- index.html - Pantalla Única de Escaneo Continuo para el Sistema IE San José -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla Periódica RA Continuo - I.E. San José del Citará</title>
+  <title>Tabla Periódica Interactiva - RA</title>
 
-  <!-- A-Frame y MindAR -->
+  <!-- Librerías de Visualización 3D y RA -->
   <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.3/dist/mindar-image-aframe.prod.js"></script>
 
+  <!-- Importamos el cerebro de datos del elemento que creamos arriba -->
+  <script src="./datos-tabla.js"></script>
+
   <style>
-    body {
+    body, html {
       margin: 0;
       overflow: hidden;
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       background-color: #000;
+      width: 100%;
+      height: 100%;
     }
 
-    /* Marca de agua de la institución */
+    /* Identificador Institucional */
     .watermark {
       position: fixed;
       top: 15px;
       left: 15px;
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
-      background: linear-gradient(135deg, rgba(31, 41, 55, 0.7), rgba(17, 24, 39, 0.7));
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.95);
+      background: rgba(15, 23, 42, 0.75);
       padding: 8px 14px;
-      border-radius: 20px;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      z-index: 1000;
+      border-radius: 30px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 999;
     }
 
-    /* Interfaz de Usuario Avanzada: Glassmorphism Bottom Sheet */
+    /* Interfaz de Usuario Moderna (Bottom Sheet) */
     .element-card {
       position: fixed;
-      bottom: -220px; /* Oculto inicialmente */
+      bottom: -250px;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      max-width: 400px;
-      background: rgba(255, 255, 255, 0.92);
+      width: 92%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.94);
       border-radius: 24px;
       padding: 20px;
-      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.4);
+      z-index: 999;
+      transition: bottom 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      backdrop-filter: blur(15px);
       box-sizing: border-box;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
     .element-card.active {
@@ -59,21 +67,21 @@
     .card-header {
       display: flex;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .element-badge {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: #2563eb;
+      width: 55px;
+      height: 55px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      font-size: 22px;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      font-weight: 800;
+      font-size: 24px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.45);
     }
 
     .element-title {
@@ -82,23 +90,26 @@
 
     .element-title h2 {
       margin: 0;
-      font-size: 20px;
-      color: #111827;
+      font-size: 22px;
+      color: #0f172a;
+      font-weight: 700;
     }
 
     .element-title p {
-      margin: 0;
+      margin: 2px 0 0 0;
       font-size: 13px;
-      color: #4b5563;
-      font-weight: 500;
+      color: #475569;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .element-data {
       font-size: 14px;
-      color: #374151;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      color: #334155;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
       padding-top: 12px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     #sceneContainer {
@@ -109,9 +120,9 @@
 </head>
 <body>
 
-  <div class="watermark">I. E. San José del Citará</div>
+  <div class="watermark">Sistema IE San José</div>
 
-  <!-- Panel de Información UI -->
+  <!-- Panel de Información UI Emergente -->
   <div id="infoCard" class="element-card">
     <div class="card-header">
       <div id="elemBadge" class="element-badge">-</div>
@@ -125,51 +136,20 @@
     </div>
   </div>
 
-  <!-- Contenedor único donde corre la Realidad Aumentada libre de menús -->
+  <!-- Contenedor único donde corre la Realidad Aumentada -->
   <div id="sceneContainer"></div>
 
   <script>
-    // 1. Estructura de Datos Unificada indexada por Bloques de archivos .mind
-    const periodicBlocks = [
-      {
-        id: "bloque1",
-        file: "./targets/bloque1.mind",
-        elements: {
-          0: { symbol: "H", name: "Hidrógeno", group: "No Metal", desc: "Gas altamente inflamable, el elemento más ligero y abundante del universo.", model: "./models/1H.glb" },
-          1: { symbol: "He", name: "Helio", group: "Gas Noble", desc: "Gas inerte, incoloro y el segundo elemento más ligero de la tabla.", model: "./models/2He.glb" }
-          // Completar índices del 0 al 39 para el bloque 1
-        }
-      },
-      {
-        id: "bloque2",
-        file: "./targets/bloque2.mind",
-        elements: {
-          0: { symbol: "Nb", name: "Niobio", group: "Metal de Transición", desc: "Metal de transición dúctil utilizado principalmente en superaleaciones aeroespaciales.", model: "./models/41Nb.glb" },
-          1: { symbol: "Mo", name: "Molibdeno", group: "Metal de Transición", desc: "Posee uno de los puntos de fusión más altos de los elementos puros.", model: "./models/42Mo.glb" }
-          // Completar índices del 0 al 39 para el bloque 2 (Vuelve a iniciar desde 0)
-        }
-      },
-      {
-        id: "bloque3",
-        file: "./targets/bloque3.mind",
-        elements: {
-          0: { symbol: "Tl", name: "Talio", group: "Metal del Bloque p", desc: "Metal blando y maleable que se oxida rápidamente al contacto con el aire.", model: "./models/81Tl.glb" },
-          1: { symbol: "Pb", name: "Plomo", group: "Metal Pesado", desc: "Elemento denso y muy maleable con alta resistencia a la corrosión.", model: "./models/82Pb.glb" }
-          // Completar índices del 0 al 37 para el bloque 3 (Vuelve a iniciar desde 0)
-        }
-      }
-    ];
-
     let currentBlockIndex = 0;
     let scannerInterval = null;
     let isElementTracking = false;
     const infoCard = document.querySelector('#infoCard');
 
-    // 2. Componente Controlador de Eventos de A-Frame
+    // Registrar el componente de escucha en A-Frame
     AFRAME.registerComponent('ar-tracker', {
       init: function () {
         this.el.addEventListener("targetFound", (event) => {
-          // Marcador Encontrado: Congelamos el ciclo de alternancia inmediatamente para ahorrar CPU
+          // Detener el escaneo secuencial para enfocar el procesador en el elemento visto
           isElementTracking = true;
           clearInterval(scannerInterval);
 
@@ -178,22 +158,20 @@
           const elementData = currentBlock.elements[targetIdx];
 
           if (elementData) {
-            // Limpieza de memoria instantánea eliminando modelos previos
             const modelContainer = document.querySelector('#modelContainer');
             if (modelContainer) modelContainer.innerHTML = "";
 
-            // Inyección dinâmica del archivo .GLB bajo demanda
+            // Crear nodo .glb bajo demanda en tiempo real
             const glbElement = document.createElement('a-gltf-model');
             glbElement.setAttribute('src', elementData.model);
             glbElement.setAttribute('position', '0 0 0');
-            glbElement.setAttribute('scale', '0.6 0.6 0.6'); 
-            // Animación de rotación continua y suave para la vista 3D
-            glbElement.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear');
+            glbElement.setAttribute('scale', '0.7 0.7 0.7'); 
+            glbElement.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear');
             glbElement.setAttribute('mindar-image-target', `targetIndex: ${targetIdx}`);
             
             if (modelContainer) modelContainer.appendChild(glbElement);
 
-            // Renderizar la información del elemento detectado en la UI inferior
+            // Poblar campos de la Interfaz Gráfica
             document.querySelector('#elemBadge').innerText = elementData.symbol;
             document.querySelector('#elemName').innerText = elementData.name;
             document.querySelector('#elemCategory').innerText = elementData.group;
@@ -203,7 +181,7 @@
         });
 
         this.el.addEventListener("targetLost", () => {
-          // Marcador Perdido: Ocultar UI, limpiar memoria y reactivar el motor secuencial
+          // Si el estudiante retira el celular, limpiamos memoria y volvemos a rastrear
           infoCard.classList.remove('active');
           isElementTracking = false;
           startDynamicScanner();
@@ -211,15 +189,13 @@
       }
     });
 
-    // 3. Motor Secuencial de Escaneo en Segundo Plano
+    // Inyector Dinámico de Escenas RA
     function loadScene(block) {
       const container = document.querySelector('#sceneContainer');
-      
-      // Matar la estructura interna de la escena anterior y liberar hilos de MindAR
-      container.innerHTML = "";
+      container.innerHTML = ""; // Limpieza total de memoria RAM
 
       const sceneHTML = `
-        <a-scene mindar-image="imageTargetSrc: ${block.file}; autoStart: true; maxTrack: 1; warmupTolerance: 1; missTolerance: 2;" 
+        <a-scene mindar-scene-container mindar-image="imageTargetSrc: ${block.file}; autoStart: true; maxTrack: 1; warmupTolerance: 1; missTolerance: 2; uiScanning: no;" 
                  vr-mode-ui="enabled: false" 
                  device-orientation-permission-ui="enabled: false"
                  ar-tracker>
@@ -231,19 +207,19 @@
       container.innerHTML = sceneHTML;
     }
 
+    // Bucle cíclico automático
     function startDynamicScanner() {
       if (scannerInterval) clearInterval(scannerInterval);
 
-      // Cada 250ms el script alterna el archivo de marcadores si no hay ningún átomo enfocado
       scannerInterval = setInterval(() => {
         if (!isElementTracking) {
           currentBlockIndex = (currentBlockIndex + 1) % periodicBlocks.length;
           loadScene(periodicBlocks[currentBlockIndex]);
         }
-      }, 250); 
+      }, 350); // Alternancia óptima de descriptores
     }
 
-    // Inicializar la aplicación de manera automática al arrancar la ventana
+    // Arranque inicial
     window.addEventListener('DOMContentLoaded', () => {
       loadScene(periodicBlocks[0]);
       startDynamicScanner();
