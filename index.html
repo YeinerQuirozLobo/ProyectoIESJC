@@ -18,7 +18,7 @@
       height: 100%;
     }
 
-    /* Marca de agua original de la institución */
+    /* Marca de agua de la institución */
     .watermark {
       position: fixed;
       top: 15px;
@@ -36,7 +36,7 @@
       z-index: 999;
     }
 
-    /* Interfaz de Usuario: Tarjeta Flotante Inferior */
+    /* Interfaz de Usuario: Tarjeta Flotante Inferior (Bottom Sheet) */
     .element-card {
       position: fixed;
       bottom: -250px;
@@ -122,7 +122,11 @@
     </div>
   </div>
 
-  <a-scene id="mainScene" embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+  <a-scene id="mainScene" 
+           mindar-image="imageTargetSrc: ./targets/tabla_completa.mind; autoStart: true; maxTrack: 1; uiScanning: no;" 
+           embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false" 
+           tabla-handler>
+    
     <a-camera position="0 0 0" look-controls="enabled: false" wasd-controls="enabled: false"></a-camera>
     
     <a-entity id="universalAnchor" mindar-image-target="targetIndex: 0">
@@ -131,159 +135,142 @@
   </a-scene>
 
   <script>
-    // Base de Datos Estructural Real (Mapeo Completo)
+    // Base de Datos Estructural Unificada (Índices continuos del 0 al 117)
     const DATA_TABLA = {
-      "bloque1": {
-        0: { symbol: "H", name: "Hidrógeno", group: "No Metal", desc: "Gas altamente inflamable, el elemento más ligero y abundante del universo.", model: "1H" },
-        1: { symbol: "He", name: "Helio", group: "Gas Noble", desc: "Gas inerte, incoloro y el segundo elemento más ligero de la tabla periódica.", model: "2He" },
-        2: { symbol: "Li", name: "Litio", group: "Metal Alcalino", desc: "Metal blando, utilizado en la fabricación de baterías recargables.", model: "3Li" },
-        3: { symbol: "Be", name: "Berilio", group: "Metal Alcalinotérreo", desc: "Metal raro estructural de alta resistencia física y ligereza.", model: "4Be" },
-        4: { symbol: "B", name: "Boro", group: "Metaloide", desc: "Semiconductor utilizado en la fabricación de vidrios de borosilicato.", model: "5B" },
-        5: { symbol: "C", name: "Carbono", group: "No Metal", desc: "Base fundamental de toda la química orgánica y de la vida celular.", model: "6C" },
-        6: { symbol: "N", name: "Nitrógeno", group: "No Metal", desc: "Gas que constituye aproximadamente el 78% de la atmósfera terrestre.", model: "7N" },
-        7: { symbol: "O", name: "Oxígeno", group: "No Metal", desc: "Gas esencial para la respiración biológica y los seres vivos.", model: "8O" },
-        8: { symbol: "F", name: "Flúor", group: "Halógeno", desc: "El elemento químico más reactivo y electronegativo de todos.", model: "9F" },
-        9: { symbol: "Ne", name: "Neón", group: "Gas Noble", desc: "Gas inerte que emite un brillo rojizo característico al ionizarse.", model: "10Ne" },
-        10: { symbol: "Na", name: "Sodio", group: "Metal Alcalino", desc: "Metal blando reactivo, componente elemental de la sal común.", model: "11Na" },
-        11: { symbol: "Mg", name: "Magnesio", group: "Metal Alcalinotérreo", desc: "Metal ligero indispensable para la fotosíntesis vegetal.", model: "12Mg" },
-        12: { symbol: "Al", name: "Aluminio", group: "Metal del bloque p", desc: "Metal ligero con excelente resistencia estructural a la corrosión.", model: "13Al" },
-        13: { symbol: "Si", name: "Silicio", group: "Metaloide", desc: "Semiconductor primordial en la fabricación de microchips.", model: "14Si" },
-        14: { symbol: "P", name: "Fósforo", group: "No Metal", desc: "Esencial para la transferencia de energía celular (ATP).", model: "15P" },
-        15: { symbol: "S", name: "Azufre", group: "No Metal", desc: "No metal amarillo sólido con un olor característico al quemarse.", model: "16S" },
-        16: { symbol: "Cl", name: "Cloro", group: "Halógeno", desc: "Gas amarillo-verdoso utilizado para la purificación de agua.", model: "17Cl" },
-        17: { symbol: "Ar", name: "Argón", group: "Gas Noble", desc: "Gas noble común usado en iluminación y aislamiento térmico.", model: "18Ar" },
-        18: { symbol: "K", name: "Potasio", group: "Metal Alcalino", desc: "Metal esencial para la función de la bomba celular de sodio-potasio.", model: "19K" },
-        19: { symbol: "Ca", name: "Calcio", group: "Metal Alcalinotérreo", desc: "Metal indispensable para la consolidación ósea de los organismos.", model: "20Ca" },
-        20: { symbol: "Sc", name: "Escandio", group: "Metal de Transición", desc: "Metal ligero utilizado en superaleaciones estructurales aeroespaciales.", model: "21Sc" },
-        21: { symbol: "Ti", name: "Titanio", group: "Metal de Transición", desc: "Metal de gran resistencia mecánica y excelente biocompatibilidad.", model: "22Ti" },
-        22: { symbol: "V", name: "Vanadio", group: "Metal de Transición", desc: "Utilizado como aditivo de resistencia en aleaciones de acero.", model: "23V" },
-        23: { symbol: "Cr", name: "Cromo", group: "Metal de Transición", desc: "Elemento brillante resistente a la corrosión, clave para el acero inoxidable.", model: "24Cr" },
-        24: { symbol: "Mn", name: "Manganeso", group: "Metal de Transición", desc: "Esencial en metalurgia para eliminar impurezas de azufre en el hierro.", model: "25Mn" },
-        25: { symbol: "Fe", name: "Hierro", group: "Metal de Transición", desc: "El metal de transición más común en la Tierra, núcleo del planeta.", model: "26Fe" },
-        26: { symbol: "Co", name: "Cobalto", group: "Metal de Transición", desc: "Metal ferromagnético empleado en imanes permanentes y baterías de litio.", model: "27Co" },
-        27: { symbol: "Ni", name: "Níquel", group: "Metal de Transición", desc: "Metal blanco plateado muy resistente a la corrosión atmosférica.", model: "28Ni" },
-        28: { symbol: "Cu", name: "Cobre", group: "Metal de Transición", desc: "Excelente conductor eléctrico y térmico, base de la red eléctrica.", model: "29Cu" },
-        29: { symbol: "Zn", name: "Zinc", group: "Metal de Transición", desc: "Metal de transición utilizado principalmente en el galvanizado del hierro.", model: "30Zn" },
-        30: { symbol: "Ga", name: "Galio", group: "Metal del bloque p", desc: "Metal capaz de fundirse a temperatura ambiente en la palma de la mano.", model: "31Ga" },
-        31: { symbol: "Ge", name: "Germanio", group: "Metaloide", desc: "Semiconductor utilizado en la fabricación de lentes ópticos infrarrojos.", model: "32Ge" },
-        32: { symbol: "As", name: "Arsénico", group: "Metaloide", desc: "Metaloide famoso por su alta toxicidad y aplicaciones en semiconductores.", model: "33As" },
-        33: { symbol: "Se", name: "Selenio", group: "No Metal", desc: "No metal fotovoltaico usado en rectificadores y la industria del vidrio.", model: "34Se" },
-        34: { symbol: "Br", name: "Bromo", group: "Halógeno", desc: "Único no metal líquido a temperatura y presión estándar.", model: "35Br" },
-        35: { symbol: "Kr", name: "Kriptón", group: "Gas Noble", desc: "Gas noble utilizado en lámparas de alta intensidad y fotografía profesional.", model: "36Kr" },
-        36: { symbol: "Rb", name: "Rubidio", group: "Metal Alcalino", desc: "Metal alcalino altamente reactivo empleado en relojes atómicos.", model: "37Rb" },
-        37: { symbol: "Sr", name: "Estroncio", group: "Metal Alcalinotérreo", desc: "Imparte un color rojo carmín brillante a los fuegos pirotécnicos.", model: "38Sr" },
-        38: { symbol: "Y", name: "Itrio", group: "Metal de Transición", desc: "Metal de transición empleado para aumentar la luminiscencia en pantallas.", model: "39Y" },
-        39: { symbol: "Zr", name: "Circonio", group: "Metal de Transición", desc: "Altamente refractario, usado en revestimientos de reactores nucleares.", model: "40Zr" }
-      },
-      "bloque2": {
-        0: { symbol: "Nb", name: "Niobio", group: "Metal de Transición", desc: "Metal superconductor usado en imanes de escáneres médicos por resonancia.", model: "41Nb" },
-        1: { symbol: "Mo", name: "Molibdeno", group: "Metal de Transición", desc: "Soporta temperaturas térmicas extremas sin perder rigidez estructural.", model: "42Mo" },
-        2: { symbol: "Tc", name: "Tecnecio", group: "Metal de Transición", desc: "Primer elemento artificial, clave en el contraste de medicina nuclear.", model: "43Tc" },
-        3: { symbol: "Ru", name: "Rutenio", group: "Metal de Transición", desc: "Metal raro del grupo del platino, excelente catalizador industrial.", model: "44Ru" },
-        4: { symbol: "Rh", name: "Rodio", group: "Metal de Transición", desc: "Extremadamente costoso, mitiga gases nocivos en catalizadores vehiculares.", model: "45Rh" },
-        5: { symbol: "Pd", name: "Paladio", group: "Metal de Transición", desc: "Metal noble capaz de absorber grandes volúmenes de gas hidrógeno.", model: "46Pd" },
-        6: { symbol: "Ag", name: "Plata", group: "Metal de Transición", desc: "El elemento químico con la mayor conductividad eléctrica y térmica de todos.", model: "47Ag" },
-        7: { symbol: "Cd", name: "Cadmio", group: "Metal de Transición", desc: "Metal pesado altamente tóxico regulado en acumuladores industriales.", model: "48Cd" },
-        8: { symbol: "In", name: "Indio", group: "Metal del bloque p", desc: "Capa óxida transparente conductora en pantallas de dispositivos táctiles.", model: "49In" },
-        9: { symbol: "Sn", name: "Estaño", group: "Metal del bloque p", desc: "Utilizado para recubrir latas de conserva y en aleaciones de soldadura.", model: "50Sn" },
-        10: { symbol: "Sb", name: "Antimonio", group: "Metaloide", desc: "Metaloide usado para aumentar la dureza mecánica del plomo en baterías.", model: "51Sb" },
-        11: { symbol: "Te", name: "Telurio", group: "Metaloide", desc: "Metaloide termoeléctrico que optimiza la maquinabilidad de aceros.", model: "52Te" },
-        12: { symbol: "I", name: "Yodo", group: "Halógeno", desc: "No metal indispensable para la síntesis de hormonas en la glándula tiroides.", model: "53I" },
-        13: { symbol: "Xe", name: "Xenón", group: "Gas Noble", desc: "Produce destellos intensos de color azulado en faros vehiculares.", model: "54Xe" },
-        14: { symbol: "Cs", name: "Cesio", group: "Metal Alcalino", desc: "La frecuencia de resonancia de sus átomos define la duración del segundo.", model: "55Cs" },
-        15: { symbol: "Ba", name: "Bario", group: "Metal Alcalinotérreo", desc: "Utilizado en lodos de perforación petrolera y contrastes radiológicos.", model: "56Ba" },
-        16: { symbol: "La", name: "Lantano", group: "Lantánido", desc: "Tierra rara que mejora las propiedades de refracción óptica en cristales.", model: "57La" },
-        17: { symbol: "Ce", name: "Cerio", group: "Lantánido", desc: "El más abundante de la serie, componente de las piedras de encendedor.", model: "58Ce" },
-        18: { symbol: "Pr", name: "Praseodimio", group: "Lantánido", desc: "Tierra rara que confiere un color verde puro a los vidrios de protección.", model: "59Pr" },
-        19: { symbol: "Nd", name: "Neodinio", group: "Lantánido", desc: "Componente metalúrgico de los imanes permanentes más potentes del mundo.", model: "60Nd" },
-        20: { symbol: "Pm", name: "Prometio", group: "Lantánido", desc: "Radiactivo artificial emisor de partículas beta empleado en microbaterías.", model: "61Pm" },
-        21: { symbol: "Sm", name: "Samario", group: "Lantánido", desc: "Imanes de samario-cobalto con alta estabilidad magnética térmica.", model: "62Sm" },
-        22: { symbol: "Eu", name: "Europio", group: "Lantánido", desc: "Fósforo emisor de luminiscencia roja en pantallas y billetes seguros.", model: "63Eu" },
-        23: { symbol: "Gd", name: "Gadolinio", group: "Lantánido", desc: "Empleado como blindaje en reactores nucleares y contraste médico de RMN.", model: "64Gd" },
-        24: { symbol: "Tb", name: "Terbio", group: "Lantánido", desc: "Dopante verde luminiscente en lámparas fluorescentes de alta eficiencia.", model: "65Tb" },
-        25: { symbol: "Dy", name: "Disprosio", group: "Lantánido", desc: "Evita la desmagnetización de motores eléctricos a altas temperaturas.", model: "66Dy" },
-        26: { symbol: "Ho", name: "Holmio", group: "Lantánido", desc: "Posee la mayor capacidad de concentración de líneas de campo magnético.", model: "67Ho" },
-        27: { symbol: "Er", name: "Erbio", group: "Lantánido", desc: "Utilizado como amplificador de señal lumínica en cables de fibra óptica.", model: "68Er" },
-        28: { symbol: "Tm", name: "Tulio", group: "Lantánido", desc: "El lantánido más escaso, fuente de radiación médica portátil de rayos X.", model: "69Tm" },
-        29: { symbol: "Yb", name: "Iterbio", group: "Lantánido", desc: "Utilizado en amplificadores láser y sensores de deformación sísmica.", model: "70Yb" },
-        30: { symbol: "Lu", name: "Lutecio", group: "Lantánido", desc: "El lantánido más denso and duro, catalizador de craqueo refinador.", model: "71Lu" },
-        31: { symbol: "Hf", name: "Hafnio", group: "Metal de Transición", desc: "Se alea con filamentos de wolframio para aumentar su vida útil.", model: "72Hf" },
-        32: { symbol: "Ta", name: "Tantalio", group: "Metal de Transición", desc: "Altamente resistente a ácidos, vital en microcondensadores móviles.", model: "73Ta" },
-        33: { symbol: "W", name: "Wolframio", group: "Metal de Transición", desc: "Elemento puro con el punto de fusión más elevado de la tabla periódica.", model: "74W" },
-        34: { symbol: "Re", name: "Renio", group: "Metal de Transición", desc: "Metal denso refractario empleado en filamentos de espectrómetros.", model: "75Re" },
-        35: { symbol: "Os", name: "Osmio", group: "Metal de Transición", desc: "El elemento químico natural de mayor densidad y peso de la Tierra.", model: "76Os" },
-        36: { symbol: "Ir", name: "Iridio", group: "Metal de Transición", desc: "Rarísimo en la corteza terrestre, indicador de impactos de asteroides.", model: "77Ir" },
-        37: { symbol: "Pt", name: "Platino", group: "Metal de Transición", desc: "Metal precioso inerte usado en catalizadores vehiculares y quimioterapia.", model: "78Pt" },
-        38: { symbol: "Au", name: "Oro", group: "Metal de Transición", desc: "Metal noble maleable por excelencia, inalterable al aire y ácidos.", model: "79Au" },
-        39: { symbol: "Hg", name: "Mercurio", group: "Metal de Transición", desc: "Metal líquido a temperatura estándar, de alta neurotoxicidad.", model: "80Hg" }
-      },
-      "bloque3": {
-        0: { symbol: "Tl", name: "Talio", group: "Metal del bloque p", desc: "Metal blando y maleable; sus sales cambian de coloración al calentarse.", model: "81Tl" },
-        1: { symbol: "Pb", name: "Plomo", group: "Metal del bloque p", desc: "Metal pesado denso, excelente escudo de absorción antirradiación.", model: "82Pb" },
-        2: { symbol: "Bi", name: "Bismuto", group: "Metal del bloque p", desc: "Metal con el diamagnetismo más alto; sus óxidos forman cristales iridiscentes.", model: "83Bi" },
-        3: { symbol: "Po", name: "Polonio", group: "Metaloide", desc: "Elemento radiactivo extremo de alta volatilidad descubierto por Marie Curie.", model: "84Po" },
-        4: { symbol: "At", name: "Astato", group: "Halógeno", desc: "El elemento natural más escaso y efímero sobre la corteza terrestre.", model: "85At" },
-        5: { symbol: "Rn", name: "Radón", group: "Gas Noble", desc: "Gas noble radiactivo pesado producto de la desintegración del uranio.", model: "86Rn" },
-        6: { symbol: "Fr", name: "Francio", group: "Metal Alcalino", desc: "Metal alcalino altamente inestable con trazas mínimas en la naturaleza.", model: "87Fr" },
-        7: { symbol: "Ra", name: "Radio", group: "Metal Alcalinotérreo", desc: "Intensamente radiactivo, empleado históricamente en esferas luminosas.", model: "88Ra" },
-        8: { symbol: "Ac", name: "Actinio", group: "Actínido", desc: "Metal radiactivo que emite un potente brillo azulado en la oscuridad.", model: "89Ac" },
-        9: { symbol: "Th", name: "Torio", group: "Actínido", desc: "Considerado un combustible de energía nuclear limpia del futuro.", model: "90Th" },
-        10: { symbol: "Pa", name: "Protactinio", group: "Actínido", desc: "Elemento radiactivo tóxico intermediario en el decaimiento del uranio.", model: "91Pa" },
-        11: { symbol: "U", name: "Uranio", group: "Actínido", desc: "Elemento pesado fisible, combustible base de centrales nucleares.", model: "92U" },
-        12: { symbol: "Np", name: "Neptunio", group: "Actínido", desc: "Subproducto metálico obtenido en los reactores de uranio.", model: "93Np" },
-        13: { symbol: "Pu", name: "Plutonio", group: "Actínido", desc: "Utilizado como fuente térmica en sondas y satélites espaciales.", model: "94Pu" },
-        14: { symbol: "Am", name: "Americio", group: "Actínido", desc: "Elemento sintético artificial presente en los sensores domésticos de humo.", model: "95Am" },
-        15: { symbol: "Cm", name: "Curio", group: "Actínido", desc: "Emana calor intenso constante debido a su fuerte actividad alfa.", model: "96Cm" },
-        16: { symbol: "Bk", name: "Berkelio", group: "Actínido", desc: "Metal sintético radiactivo nombrado en honor a la Universidad de Berkeley.", model: "97Bk" },
-        17: { symbol: "Cf", name: "Californio", group: "Actínido", desc: "Potente emisor de neutrones usado para calibrar reactores industriales.", model: "98Cf" },
-        18: { symbol: "Es", name: "Einstenio", group: "Actínido", desc: "Creado por bombardeo, carece de aplicaciones prácticas fuera de laboratorios.", model: "99Es" },
-        19: { symbol: "Fm", name: "Fermio", group: "Actínido", desc: "El elemento más pesado que puede sintetizarse mediante bombardeo.", model: "100Fm" },
-        20: { symbol: "Md", name: "Mendelevio", group: "Actínido", desc: "Sintetizado artificialmente bombardeando einstenio con núcleos de helio.", model: "101Md" },
-        21: { symbol: "No", name: "Nobelio", group: "Actínido", desc: "Elemento radiactivo sintético transactínido con vida media efímera.", model: "102No" },
-        22: { symbol: "Lr", name: "Lawrencio", group: "Actínido", desc: "Último elemento de la serie de los actínidos, altamente inestable.", model: "103Lr" },
-        23: { symbol: "Rf", name: "Rutherfordio", group: "Transactínido", desc: "Primer transactínido sintético descubierto con vida media de segundos.", model: "104Rf" },
-        24: { symbol: "Db", name: "Dubnio", group: "Transactínido", desc: "Sintetizado por colisión neutrónica, decae por fisión espontánea.", model: "105Db" },
-        25: { symbol: "Sg", name: "Seaborgio", group: "Transactínido", desc: "Elemento sintético superpesado nombrado en honor a Glenn Seaborg.", model: "106Sg" },
-        26: { symbol: "Bh", name: "Bohrio", group: "Transactínido", desc: "Nombrado en honor a Niels Bohr, sus propiedades emulan al Renio.", model: "107Bh" },
-        27: { symbol: "Hs", name: "Hassio", group: "Transactínido", desc: "Elemento transactínido radiactivo capaz de formar un tetróxido volátil.", model: "108Hs" },
-        28: { symbol: "Mt", name: "Meitnerio", group: "Transactínido", desc: "Producido mediante fusión pesada bombardeando bismuto con hierro.", model: "109Mt" },
-        29: { symbol: "Ds", name: "Darmstatio", group: "Transactínido", desc: "Creado artificialmente fusionando un átomo de níquel con plomo.", model: "110Ds" },
-        30: { symbol: "Rg", name: "Roentgenio", group: "Transactínido", desc: "Isótopos conocidos tienen un periodo de semidesintegración de 26 segundos.", model: "111Rg" },
-        31: { symbol: "Cn", name: "Copernicio", group: "Transactínido", desc: "Elemento superpesado que actúa como un metal volátil en laboratorio.", model: "112Cn" },
-        32: { symbol: "Nh", name: "Nihonio", group: "Transactínido", desc: "Primer elemento sintético descubierto y nombrado oficialmente en Japón.", model: "113Nh" },
-        33: { symbol: "Fl", name: "Flerovio", group: "Transactínido", desc: "Elemento superpesado radiactivo artificial extremadamente inestable.", model: "114Fl" },
-        34: { symbol: "Mc", name: "Moscovio", group: "Transactínido", desc: "Fusión artificial bombardeando americio con iones de calcio.", model: "115Mc" },
-        35: { symbol: "Lv", name: "Livermorio", group: "Transactínido", desc: "Producido en aceleradores de partículas por colaboración internacional.", model: "116Lv" },
-        36: { symbol: "Ts", name: "Tenesino", group: "Transactínido", desc: "Halógeno superpesado artificial sintetizado en laboratorios avanzados.", model: "117Ts" },
-        37: { symbol: "Og", name: "Oganesón", group: "Transactínido", desc: "El elemento con mayor masa y número atómico descubierto por la ciencia.", model: "118Og" }
-      }
+      0: { symbol: "H", name: "Hidrógeno", group: "No Metal", desc: "Gas altamente inflamable, el elemento más ligero y abundante del universo.", model: "1H" },
+      1: { symbol: "He", name: "Helio", group: "Gas Noble", desc: "Gas inerte, incoloro y el segundo elemento más ligero de la tabla periódica.", model: "2He" },
+      2: { symbol: "Li", name: "Litio", group: "Metal Alcalino", desc: "Metal blando, utilizado en la fabricación de baterías recargables.", model: "3Li" },
+      3: { symbol: "Be", name: "Berilio", group: "Metal Alcalinotérreo", desc: "Metal raro estructural de alta resistencia física y ligereza.", model: "4Be" },
+      4: { symbol: "B", name: "Boro", group: "Metaloide", desc: "Semiconductor utilizado en la fabricación de vidrios de borosilicato.", model: "5B" },
+      5: { symbol: "C", name: "Carbono", group: "No Metal", desc: "Base fundamental de toda la química orgánica y de la vida celular.", model: "6C" },
+      6: { symbol: "N", name: "Nitrógeno", group: "No Metal", desc: "Gas que constituye aproximadamente el 78% de la atmósfera terrestre.", model: "7N" },
+      7: { symbol: "O", name: "Oxígeno", group: "No Metal", desc: "Gas esencial para la respiración biológica y los seres vivos.", model: "8O" },
+      8: { symbol: "F", name: "Flúor", group: "Halógeno", desc: "El elemento químico más reactivo y electronegativo de todos.", model: "9F" },
+      9: { symbol: "Ne", name: "Neón", group: "Gas Noble", desc: "Gas inerte que emite un brillo rojizo característico al ionizarse.", model: "10Ne" },
+      10: { symbol: "Na", name: "Sodio", group: "Metal Alcalino", desc: "Metal blando reactivo, componente elemental de la sal común.", model: "11Na" },
+      11: { symbol: "Mg", name: "Magnesio", group: "Metal Alcalinotérreo", desc: "Metal ligero indispensable para la fotosíntesis vegetal.", model: "12Mg" },
+      12: { symbol: "Al", name: "Aluminio", group: "Metal del bloque p", desc: "Metal ligero con excelente resistencia estructural a la corrosión.", model: "13Al" },
+      13: { symbol: "Si", name: "Silicio", group: "Metaloide", desc: "Semiconductor primordial en la fabricación de microchips.", model: "14Si" },
+      14: { symbol: "P", name: "Fósforo", group: "No Metal", desc: "Esencial para la transferencia de energía celular (ATP).", model: "15P" },
+      15: { symbol: "S", name: "Azufre", group: "No Metal", desc: "No metal amarillo sólido con un olor característico al quemarse.", model: "16S" },
+      16: { symbol: "Cl", name: "Cloro", group: "Halógeno", desc: "Gas amarillo-verdoso utilizado para la purificación de agua.", model: "17Cl" },
+      17: { symbol: "Ar", name: "Argón", group: "Gas Noble", desc: "Gas noble común usado en iluminación y aislamiento térmico.", model: "18Ar" },
+      18: { symbol: "K", name: "Potasio", group: "Metal Alcalino", desc: "Metal esencial para la función de la bomba celular de sodio-potasio.", model: "19K" },
+      19: { symbol: "Ca", name: "Calcio", group: "Metal Alcalinotérreo", desc: "Metal indispensable para la consolidación ósea de los organismos.", model: "20Ca" },
+      20: { symbol: "Sc", name: "Escandio", group: "Metal de Transición", desc: "Metal ligero utilizado en superaleaciones estructurales aeroespaciales.", model: "21Sc" },
+      21: { symbol: "Ti", name: "Titanio", group: "Metal de Transición", desc: "Metal de gran resistencia mecánica y excelente biocompatibilidad.", model: "22Ti" },
+      22: { symbol: "V", name: "Vanadio", group: "Metal de Transición", desc: "Utilizado como aditivo de resistencia en aleaciones de acero.", model: "23V" },
+      23: { symbol: "Cr", name: "Cromo", group: "Metal de Transición", desc: "Elemento brillante resistente a la corrosión, clave para el acero inoxidable.", model: "24Cr" },
+      24: { symbol: "Mn", name: "Manganeso", group: "Metal de Transición", desc: "Esencial en metalurgia para eliminar impurezas de azufre en el hierro.", model: "25Mn" },
+      25: { symbol: "Fe", name: "Hierro", group: "Metal de Transición", desc: "El metal de transición más común en la Tierra, núcleo del planeta.", model: "26Fe" },
+      26: { symbol: "Co", name: "Cobalto", group: "Metal de Transición", desc: "Metal ferromagnético empleado en imanes permanentes y baterías de litio.", model: "27Co" },
+      27: { symbol: "Ni", name: "Níquel", group: "Metal de Transición", desc: "Metal blanco plateado muy resistente a la corrosión atmosférica.", model: "28Ni" },
+      28: { symbol: "Cu", name: "Cobre", group: "Metal de Transición", desc: "Excelente conductor eléctrico y térmico, base de la red eléctrica.", model: "29Cu" },
+      29: { symbol: "Zn", name: "Zinc", group: "Metal de Transición", desc: "Metal de transición utilizado principalmente en el galvanizado del hierro.", model: "30Zn" },
+      30: { symbol: "Ga", name: "Galio", group: "Metal del bloque p", desc: "Metal capaz de fundirse a temperatura ambiente en la palma de la mano.", model: "31Ga" },
+      31: { symbol: "Ge", name: "Germanio", group: "Metaloide", desc: "Semiconductor utilizado en la fabricación de lentes ópticos infrarrojos.", model: "32Ge" },
+      32: { symbol: "As", name: "Arsénico", group: "Metaloide", desc: "Metaloide famoso por su alta toxicidad y aplicaciones en semiconductores.", model: "33As" },
+      33: { symbol: "Se", name: "Selenio", group: "No Metal", desc: "No metal fotovoltaico usado en rectificadores y la industria del vidrio.", model: "34Se" },
+      34: { symbol: "Br", name: "Bromo", group: "Halógeno", desc: "Único no metal líquido a temperatura y presión estándar.", model: "35Br" },
+      35: { symbol: "Kr", name: "Kriptón", group: "Gas Noble", desc: "Gas noble utilizado en lámparas de alta intensidad y fotografía profesional.", model: "36Kr" },
+      36: { symbol: "Rb", name: "Rubidio", group: "Metal Alcalino", desc: "Metal alcalino altamente reactivo empleado en relojes atómicos.", model: "37Rb" },
+      37: { symbol: "Sr", name: "Estroncio", group: "Metal Alcalinotérreo", desc: "Imparte un color rojo carmín brillante a los fuegos pirotécnicos.", model: "38Sr" },
+      38: { symbol: "Y", name: "Itrio", group: "Metal de Transición", desc: "Metal de transición empleado para aumentar la luminiscencia en pantallas.", model: "39Y" },
+      39: { symbol: "Zr", name: "Circonio", group: "Metal de Transición", desc: "Altamente refractario, usado en revestimientos de reactores nucleares.", model: "40Zr" },
+      // Bloque 2 original integrado consecutivamente:
+      40: { symbol: "Nb", name: "Niobio", group: "Metal de Transición", desc: "Metal superconductor usado en imanes de escáneres médicos por resonancia.", model: "41Nb" },
+      41: { symbol: "Mo", name: "Molibdeno", group: "Metal de Transición", desc: "Soporta temperaturas térmicas extremas sin perder rigidez estructural.", model: "42Mo" },
+      42: { symbol: "Tc", name: "Tecnecio", group: "Metal de Transición", desc: "Primer elemento artificial, clave en el contraste de medicina nuclear.", model: "43Tc" },
+      43: { symbol: "Ru", name: "Rutenio", group: "Metal de Transición", desc: "Metal raro del grupo del platino, excelente catalizador industrial.", model: "44Ru" },
+      44: { symbol: "Rh", name: "Rodio", group: "Metal de Transición", desc: "Extremadamente costoso, mitiga gases nocivos en catalizadores vehiculares.", model: "45Rh" },
+      45: { symbol: "Pd", name: "Paladio", group: "Metal de Transición", desc: "Metal noble capaz de absorber grandes volúmenes de gas hidrógeno.", model: "46Pd" },
+      46: { symbol: "Ag", name: "Plata", group: "Metal de Transición", desc: "El elemento químico con la mayor conductividad eléctrica y térmica de todos.", model: "47Ag" },
+      47: { symbol: "Cd", name: "Cadmio", group: "Metal de Transición", desc: "Metal pesado altamente tóxico regulado en acumuladores industriales.", model: "48Cd" },
+      48: { symbol: "In", name: "Indio", group: "Metal del bloque p", desc: "Capa óxida transparente conductora en pantallas de dispositivos táctiles.", model: "49In" },
+      49: { symbol: "Sn", name: "Estaño", group: "Metal del bloque p", desc: "Utilizado para recubrir latas de conserva y en aleaciones de soldadura.", model: "50Sn" },
+      50: { symbol: "Sb", name: "Antimonio", group: "Metaloide", desc: "Metaloide usado para aumentar la duresa mecánica del plomo en baterías.", model: "51Sb" },
+      51: { symbol: "Te", name: "Telurio", group: "Metaloide", desc: "Metaloide termoeléctrico que optimiza la maquinabilidad de aceros.", model: "52Te" },
+      52: { symbol: "I", name: "Yodo", group: "Halógeno", desc: "No metal indispensable para la síntesis de hormonas en la glándula tiroides.", model: "53I" },
+      53: { symbol: "Xe", name: "Xenón", group: "Gas Noble", desc: "Produce destellos intensos de color azulado en faros vehiculares.", model: "54Xe" },
+      14: { symbol: "Cs", name: "Cesio", group: "Metal Alcalino", desc: "La frecuencia de resonancia de sus átomos define la duración del segundo.", model: "55Cs" },
+      55: { symbol: "Ba", name: "Bario", group: "Metal Alcalinotérreo", desc: "Utilizado en lodos de perforación petrolera y contrastes radiológicos.", model: "56Ba" },
+      56: { symbol: "La", name: "Lantano", group: "Lantánido", desc: "Tierra rara que mejora las propiedades de refracción óptica en cristales.", model: "57La" },
+      57: { symbol: "Ce", name: "Cerio", group: "Lantánido", desc: "El más abundante de la serie, componente de las piedras de encendedor.", model: "58Ce" },
+      58: { symbol: "Pr", name: "Praseodimio", group: "Lantánido", desc: "Tierra rara que confiere un color verde puro a los vidrios de protección.", model: "59Pr" },
+      59: { symbol: "Nd", name: "Neodinio", group: "Lantánido", desc: "Componente metalúrgico de los imanes permanentes más potentes del mundo.", model: "60Nd" },
+      60: { symbol: "Pm", name: "Prometio", group: "Lantánido", desc: "Radiactivo artificial emisor de partículas beta empleado en microbaterías.", model: "61Pm" },
+      61: { symbol: "Sm", name: "Samario", group: "Lantánido", desc: "Imanes de samario-cobalto con alta estabilidad magnética térmica.", model: "62Sm" },
+      62: { symbol: "Eu", name: "Europio", group: "Lantánido", desc: "Fósforo emisor de luminiscencia roja en pantallas y billetes seguros.", model: "63Eu" },
+      63: { symbol: "Gd", name: "Gadolinio", group: "Lantánido", desc: "Empleado como blindaje en reactores nucleares y contraste médico de RMN.", model: "64Gd" },
+      64: { symbol: "Tb", name: "Terbio", group: "Lantánido", desc: "Dopante verde luminiscente en lámparas fluorescentes de alta eficiencia.", model: "65Tb" },
+      65: { symbol: "Dy", name: "Disprosio", group: "Lantánido", desc: "Evita la desmagnetización de motores eléctricos a altas temperaturas.", model: "66Dy" },
+      66: { symbol: "Ho", name: "Holmio", group: "Lantánido", desc: "Posee la mayor capacidad de concentración de líneas de campo magnético.", model: "67Ho" },
+      67: { symbol: "Er", name: "Erbio", group: "Lantánido", desc: "Utilizado como amplificador de señal lumínica en cables de fibra óptica.", model: "68Er" },
+      68: { symbol: "Tm", name: "Tulio", group: "Lantánido", desc: "El lantánido más escaso, fuente de radiación médica portátil de rayos X.", model: "69Tm" },
+      69: { symbol: "Yb", name: "Iterbio", group: "Lantánido", desc: "Utilizado en amplificadores láser y sensores de deformación sísmica.", model: "70Yb" },
+      70: { symbol: "Lu", name: "Lutecio", group: "Lantánido", desc: "El lantánido más densos y duro, catalizador de craqueo refinador.", model: "71Lu" },
+      71: { symbol: "Hf", name: "Hafnio", group: "Metal de Transición", desc: "Se alea con filamentos de wolframio para aumentar su vida útil.", model: "72Hf" },
+      72: { symbol: "Ta", name: "Tantalio", group: "Metal de Transición", desc: "Altamente resistente a ácidos, vital en microcondensadores móviles.", model: "73Ta" },
+      73: { symbol: "W", name: "Wolframio", group: "Metal de Transición", desc: "Elemento puro con el punto de fusión más elevado de la tabla periódica.", model: "74W" },
+      74: { symbol: "Re", name: "Renio", group: "Metal de Transición", desc: "Metal denso refractario empleado en filamentos de espectrómetros.", model: "75Re" },
+      75: { symbol: "Os", name: "Osmio", group: "Metal de Transición", desc: "El elemento químico natural de mayor densidad y peso de la Tierra.", model: "76Os" },
+      76: { symbol: "Ir", name: "Iridio", group: "Metal de Transición", desc: "Rarísimo en la corteza terrestre, indicador de impactos de asteroides.", model: "77Ir" },
+      77: { symbol: "Pt", name: "Platino", group: "Metal de Transición", desc: "Metal precioso inerte usado en catalizadores vehiculares y quimioterapia.", model: "78Pt" },
+      78: { symbol: "Au", name: "Oro", group: "Metal de Transición", desc: "Metal noble maleable por excelencia, inalterable al aire y ácidos.", model: "79Au" },
+      79: { symbol: "Hg", name: "Mercurio", group: "Metal de Transición", desc: "Metal líquido a temperatura estándar, de alta neurotoxicidad.", model: "80Hg" },
+      // Bloque 3 original integrado consecutivamente:
+      80: { symbol: "Tl", name: "Talio", group: "Metal del bloque p", desc: "Metal blando y maleable; sus sales cambian de coloración al calentarse.", model: "81Tl" },
+      81: { symbol: "Pb", name: "Plomo", group: "Metal del bloque p", desc: "Metal pesado denso, excelente escudo de absorción antirradiación.", model: "82Pb" },
+      82: { symbol: "Bi", name: "Bismuto", group: "Metal del bloque p", desc: "Metal con el diamagnetismo más alto; sus óxidos forman cristales iridiscentes.", model: "83Bi" },
+      83: { symbol: "Po", name: "Polonio", group: "Metaloide", desc: "Elemento radiactivo extremo de alta volatilidad descubierto por Marie Curie.", model: "84Po" },
+      84: { symbol: "At", name: "Astato", group: "Halógeno", desc: "El elemento natural más escaso y efímero sobre la corteza terrestre.", model: "85At" },
+      85: { symbol: "Rn", name: "Radón", group: "Gas Noble", desc: "Gas noble radiactivo pesado producto de la desintegración del uranio.", model: "86Rn" },
+      86: { symbol: "Fr", name: "Francio", group: "Metal Alcalino", desc: "Metal alcalino altamente inestable con trazas mínimas en la naturaleza.", model: "87Fr" },
+      87: { symbol: "Ra", name: "Radio", group: "Metal Alcalinotérreo", desc: "Intensamente radiactivo, empleado históricamente en esferas luminosas.", model: "88Ra" },
+      88: { symbol: "Ac", name: "Actinio", group: "Actínido", desc: "Metal radiactivo que emite un potente brillo azulado en la oscuridad.", model: "89Ac" },
+      89: { symbol: "Th", name: "Torio", group: "Actínido", desc: "Considerado un combustible de energía nuclear limpia del futuro.", model: "90Th" },
+      90: { symbol: "Pa", name: "Protactinio", group: "Actínido", desc: "Elemento radiactivo tóxico intermediario en el decaimiento del uranio.", model: "91Pa" },
+      91: { symbol: "U", name: "Uranio", group: "Actínido", desc: "Elemento pesado fisible, combustible base de centrales nucleares.", model: "92U" },
+      92: { symbol: "Np", name: "Neptunio", group: "Actínido", desc: "Subproducto metálico obtenido en los reactores de uranio.", model: "93Np" },
+      93: { symbol: "Pu", name: "Plutonio", group: "Actínido", desc: "Utilizado como fuente térmica en sondas y satélites espaciales.", model: "94Pu" },
+      94: { symbol: "Am", name: "Americio", group: "Actínido", desc: "Elemento sintético artificial presente en los sensores domésticos de humo.", model: "95Am" },
+      95: { symbol: "Cm", name: "Curio", group: "Actínido", desc: "Emana calor intenso constante debido a su fuerte actividad alfa.", model: "96Cm" },
+      96: { symbol: "Bk", name: "Berkelio", group: "Actínido", desc: "Metal sintético radiactivo nombrado en honor a la Universidad de Berkeley.", model: "97Bk" },
+      97: { symbol: "Cf", name: "Californio", group: "Actínido", desc: "Potente emisor de neutrones usado para calibrar reactores industriales.", model: "98Cf" },
+      98: { symbol: "Es", name: "Einstenio", group: "Actínido", desc: "Creado por bombardeo, carece de aplicaciones prácticas fuera de laboratorios.", model: "99Es" },
+      99: { symbol: "Fm", name: "Fermio", group: "Actínido", desc: "El elemento más pesado que puede sintetizarse mediante bombardeo.", model: "100Fm" },
+      100: { symbol: "Md", name: "Mendelevio", group: "Actínido", desc: "Sintetizado artificialmente bombardeando einstenio con núcleos de helio.", model: "101Md" },
+      101: { symbol: "No", name: "Nobelio", group: "Actínido", desc: "Elemento radiactivo sintético transactínido con vida media efímera.", model: "102No" },
+      102: { symbol: "Lr", name: "Lawrencio", group: "Actínido", desc: "Último elemento de la serie de los actínidos, altamente inestable.", model: "103Lr" },
+      103: { symbol: "Rf", name: "Rutherfordio", group: "Transactínido", desc: "Primer transactínido sintético descubierto con vida media de segundos.", model: "104Rf" },
+      104: { symbol: "Db", name: "Dubnio", group: "Transactínido", desc: "Sintetizado por colisión neutrónica, decae por fisión espontánea.", model: "105Db" },
+      105: { symbol: "Sg", name: "Seaborgio", group: "Transactínido", desc: "Elemento sintético superpesado nombrado en honor a Glenn Seaborg.", model: "106Sg" },
+      106: { symbol: "Bh", name: "Bohrio", group: "Transactínido", desc: "Nombrado en honor a Niels Bohr, sus propiedades emulan al Renio.", model: "107Bh" },
+      107: { symbol: "Hs", name: "Hassio", group: "Transactínido", desc: "Elemento transactínido radiactivo capaz de formar un tetróxido volátil.", model: "108Hs" },
+      108: { symbol: "Mt", name: "Meitnerio", group: "Transactínido", desc: "Producido mediante fusión pesada bombardeando bismuto con hierro.", model: "109Mt" },
+      109: { symbol: "Ds", name: "Darmstatio", group: "Transactínido", desc: "Creado artificialmente fusionando un átomo de níquel con plomo.", model: "110Ds" },
+      110: { symbol: "Rg", name: "Roentgenio", group: "Transactínido", desc: "Isótopos conocidos tienen un periodo de semidesintegración de 26 segundos.", model: "111Rg" },
+      111: { symbol: "Cn", name: "Copernicio", group: "Transactínido", desc: "Elemento superpesado que actúa como un metal volátil en laboratorio.", model: "112Cn" },
+      112: { symbol: "Nh", name: "Nihonio", group: "Transactínido", desc: "Primer elemento sintético descubierto y nombrado oficialmente en Japón.", model: "113Nh" },
+      113: { symbol: "Fl", name: "Flerovio", group: "Transactínido", desc: "Elemento superpesado radiactivo artificial extremadamente inestable.", model: "114Fl" },
+      114: { symbol: "Mc", name: "Moscovio", group: "Transactínido", desc: "Fusión artificial bombardeando americio con iones de calcio.", model: "115Mc" },
+      115: { symbol: "Lv", name: "Livermorio", group: "Transactínido", desc: "Producido en aceleradores de partículas por colaboración internacional.", model: "116Lv" },
+      116: { symbol: "Ts", name: "Tenesino", group: "Transactínido", desc: "Halógeno superpesado artificial sintetizado en laboratorios avanzados.", model: "117Ts" },
+      117: { symbol: "Og", name: "Oganesón", group: "Transactínido", desc: "El elemento con mayor masa y número atómico descubierto por la ciencia.", model: "118Og" }
     };
 
     const infoCard = document.querySelector('#infoCard');
     const glbContainer = document.querySelector('#glbContainer');
-    
-    const mindFiles = ["./targets/bloque1.mind", "./targets/bloque2.mind", "./targets/bloque3.mind"];
-    const blockKeys = ["bloque1", "bloque2", "bloque3"];
-    
-    let activeBlockIdx = 0;
-    let multiplexInterval = null;
-    let targetDetected = false;
-    let abortController = null;
+    let abortController = null; 
 
-    // ALMACENAMIENTO DE CONTROLADORES INDEPENDIENTES (Aislamiento de Web Workers)
-    let arControllers = [];
-
+    // COMPONENTE NATIVO DE INTERCEPCIÓN GRÁFICA
     AFRAME.registerComponent('tabla-handler', {
       init: function () {
         const sceneEl = this.el;
 
-        sceneEl.addEventListener("targetFound", async (event) => {
-          targetDetected = true;
-          clearInterval(multiplexInterval); // Frena de golpe el switcheo cíclico
-
+        sceneEl.addEventListener("targetFound", (event) => {
           const targetIdx = event.detail.targetIndex;
-          const currentBlockName = blockKeys[activeBlockIdx];
-          const elementData = DATA_TABLA[currentBlockName][targetIdx];
+          const elementData = DATA_TABLA[targetIdx];
 
           if (elementData) {
             if (abortController) abortController.abort();
@@ -291,6 +278,7 @@
 
             glbContainer.innerHTML = "";
 
+            // Modificamos dinámicamente el índice de amarre espacial del nodo único
             const anchorEntity = document.querySelector('#universalAnchor');
             anchorEntity.setAttribute('mindar-image-target', `targetIndex: ${targetIdx}`);
 
@@ -302,6 +290,7 @@
             
             glbContainer.appendChild(glbElement);
 
+            // Pintamos los datos químicos estructurados en la interfaz
             document.querySelector('#elemBadge').innerText = elementData.symbol;
             document.querySelector('#elemName').innerText = elementData.name;
             document.querySelector('#elemCategory').innerText = elementData.group;
@@ -312,85 +301,9 @@
 
         sceneEl.addEventListener("targetLost", () => {
           infoCard.classList.remove('active');
-          glbContainer.innerHTML = ""; 
-          targetDetected = false;
-          
+          glbContainer.innerHTML = ""; // Vaciado de RAM automático para proteger el celular
           if (abortController) abortController.abort();
-          startMultiplexing(); 
         });
-      }
-    });
-
-    function startMultiplexing() {
-      if (multiplexInterval) clearInterval(multiplexInterval);
-      if (arControllers.length < 3) return;
-
-      const sceneEl = document.querySelector('#mainScene');
-      const currentSystem = sceneEl.systems['mindar-image-system'];
-
-      multiplexInterval = setInterval(() => {
-        if (targetDetected) return;
-
-        // Apagamos de forma segura el análisis lógico del Worker activo anterior
-        arControllers[activeBlockIdx].stopProcess();
-
-        // Saltamos al siguiente controlador aislado en memoria RAM
-        activeBlockIdx = (activeBlockIdx + 1) % arControllers.length;
-        
-        // Encendemos el hilo del nuevo Worker sin interferir con la estructura matemática
-        arControllers[activeBlockIdx].startProcess();
-
-        // Enlazamos la renderización visual de A-Frame al mapa activo actual
-        currentSystem.controller.imageTargets = arControllers[activeBlockIdx].imageTargets;
-        currentSystem.imageTargetSrc = mindFiles[activeBlockIdx];
-
-      }, 350); // Muestreo de 350 milisegundos
-    }
-
-    function injectMindAR() {
-      const sceneEl = document.querySelector('#mainScene');
-      
-      // Inicialización directa para forzar el encendido de la cámara web
-      sceneEl.setAttribute('mindar-image', `imageTargetSrc: ${mindFiles[0]}; autoStart: true; maxTrack: 1; uiScanning: no;`);
-      sceneEl.setAttribute('tabla-handler', '');
-
-      sceneEl.addEventListener("arReady", () => {
-        const currentSystem = sceneEl.systems['mindar-image-system'];
-        
-        // Guardamos el primer controlador de la escena raíz
-        arControllers.push(currentSystem.controller);
-
-        // PASO CLAVE: Instanciamos en frío los controladores 2 y 3 compartiendo el mismo feed de video
-        setTimeout(async () => {
-          try {
-            for(let i = 1; i < mindFiles.length; i++) {
-              // Creamos una instancia pura del objeto para aislar el Web Worker de la GPU
-              const hiddenSystem = new window.MINDAR.IMAGE.Compiler();
-              const loadedTargets = await hiddenSystem.compileImageTargets([mindFiles[i]]);
-              
-              // Mockeamos la estructura de controladores nativos de MindAR
-              const mockController = {
-                imageTargets: loadedTargets,
-                stopProcess: () => {},
-                startProcess: () => {}
-              };
-              arControllers.push(mockController);
-            }
-          } catch(err) {
-            console.warn("Buffer interceptado con éxito por seguridad.");
-          }
-          
-          startMultiplexing(); 
-        }, 1000); 
-      });
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      const sceneEl = document.querySelector('#mainScene');
-      if (sceneEl.hasLoaded) {
-        injectMindAR();
-      } else {
-        sceneEl.addEventListener("loaded", injectMindAR);
       }
     });
   </script>
