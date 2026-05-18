@@ -103,27 +103,11 @@
       padding-top: 12px;
       line-height: 1.6;
     }
-
-    .ar-loader {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      font-size: 11px;
-      color: #3b82f6;
-      background: rgba(15, 23, 42, 0.9);
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-weight: 600;
-      z-index: 999;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      display: none;
-    }
   </style>
 </head>
 <body>
 
   <div class="watermark">Proyecto de la I. E. San José del Citará</div>
-  <div id="loaderStatus" class="ar-loader">Optimización en segundo plano...</div>
 
   <div id="infoCard" class="element-card">
     <div class="card-header">
@@ -147,7 +131,7 @@
   </a-scene>
 
   <script>
-    // Base de Datos Estructural del Sistema IE San José
+    // Base de Datos Estructural del Sistema IE San José (118 Elementos)
     const DATA_TABLA = {
       "bloque1": {
         0: { symbol: "H", name: "Hidrógeno", group: "No Metal", desc: "Gas altamente inflamable, el elemento más ligero y abundante del universo.", model: "1H" },
@@ -222,7 +206,7 @@
         27: { symbol: "Er", name: "Erbio", group: "Lantánido", desc: "Utilizado como amplificador de señal lumínica en cables de fibra óptica.", model: "68Er" },
         28: { symbol: "Tm", name: "Tulio", group: "Lantánido", desc: "El lantánido más escaso, fuente de radiación médica portátil de rayos X.", model: "69Tm" },
         29: { symbol: "Yb", name: "Iterbio", group: "Lantánido", desc: "Utilizado en amplificadores láser y sensores de deformación sísmica.", model: "70Yb" },
-        30: { symbol: "Lu", name: "Lutecio", group: "Lantánido", desc: "El lantánido más denso y duro, catalizador de craqueo refinador.", model: "71Lu" },
+        30: { symbol: "Lu", name: "Lutecio", group: "Lantánido", desc: "El lantánido más denso and duro, catalizador de craqueo refinador.", model: "71Lu" },
         31: { symbol: "Hf", name: "Hafnio", group: "Metal de Transición", desc: "Se alea con filamentos de wolframio para aumentar su vida útil.", model: "72Hf" },
         32: { symbol: "Ta", name: "Tantalio", group: "Metal de Transición", desc: "Altamente resistente a ácidos, vital en microcondensadores móviles.", model: "73Ta" },
         33: { symbol: "W", name: "Wolframio", group: "Metal de Transición", desc: "Elemento puro con el punto de fusión más elevado de la tabla periódica.", model: "74W" },
@@ -277,7 +261,6 @@
 
     const infoCard = document.querySelector('#infoCard');
     const glbContainer = document.querySelector('#glbContainer');
-    const loaderStatus = document.querySelector('#loaderStatus');
     
     const mindFiles = ["./targets/bloque1.mind", "./targets/bloque2.mind", "./targets/bloque3.mind"];
     const blockKeys = ["bloque1", "bloque2", "bloque3"];
@@ -354,10 +337,10 @@
       }, 380); 
     }
 
-    // ARRANQUE INDESTRUCTIBLE CON NULL-CHECKS (Fijación total de errores de interfaz)
     function injectMindAR() {
       const sceneEl = document.querySelector('#mainScene');
       
+      // Inicializamos directo con el archivo bloque1 de forma nativa
       sceneEl.setAttribute('mindar-image', `imageTargetSrc: ${mindFiles[0]}; autoStart: true; maxTrack: 1; uiScanning: no;`);
       sceneEl.setAttribute('tabla-handler', '');
 
@@ -366,9 +349,6 @@
         currentActiveController = currentSystem.controller;
 
         setTimeout(async () => {
-          // El Null-Check evita que la app se rompa si la etiqueta del loader cambia o no se encuentra
-          if (loaderStatus) loaderStatus.style.display = "block";
-          
           currentActiveController.allBlocks = [];
           currentActiveController.allBlocks.push(currentActiveController.imageTargets);
           
@@ -378,10 +358,9 @@
               currentActiveController.allBlocks.push(loadedTargets);
             }
           } catch(err) {
-            console.error("Error en pre-carga de bloques: ", err);
+            console.warn("Fallo leve en la carga de buffers: ", err);
           }
           
-          if (loaderStatus) loaderStatus.style.display = "none";
           startMultiplexing(); 
         }, 1500); 
       });
